@@ -6,15 +6,15 @@
   <script src="js/zhang.js"></script> <!-- 牌张 -->
   <script src="js/pq.js"></script>    <!-- 牌墙 -->
   <script src="js/test.js"></script>
-  <link rel="stylesheet" href="css/main.css" />
-  <link rel="stylesheet" href="css/pz.css" />
-  <link rel="stylesheet" href="css/sp.css" />
-  <link rel="stylesheet" href="css/pc.css" />
-  <link rel="stylesheet" href="css/fs.css" />
-  <link rel="stylesheet" href="css/xz.css" />
-  <link rel="stylesheet" href="css/dc.css" />
-  <link rel="stylesheet" href="css/hup.css" />
-  <link rel="stylesheet" href="css/huangp.css" />
+  <link rel="stylesheet" href="css/main.css" />   <!-- 主体 -->
+  <link rel="stylesheet" href="css/pz.css" />     <!-- 牌张 -->
+  <link rel="stylesheet" href="css/sp.css" />     <!-- 手牌 -->
+  <link rel="stylesheet" href="css/pc.css" />     <!-- 牌池 -->
+  <link rel="stylesheet" href="css/fs.css" />     <!-- 分数 -->
+  <link rel="stylesheet" href="css/xz.css" />     <!-- 选择 -->
+  <link rel="stylesheet" href="css/dc.css" />     <!-- 打出 -->
+  <link rel="stylesheet" href="css/hup.css" />    <!-- 和牌 -->
+  <link rel="stylesheet" href="css/huangp.css" /> <!-- 荒牌 -->
 <body>
 <div id="main_body">
   <header>
@@ -22,52 +22,51 @@
       <button id="gzsd">规则设定</button>
     </div>
     <div id="sy_d">
-      剩余<input id="sy" value="72" readonly="readonly" />张
+      剩余<input id="sy" readonly="readonly" />张
     </div>
     <div id="qszf_d">
-      第<input id="qs" value="3" readonly="readonly" />圈
-      <input id="zf" value="北" readonly="readonly" />家庄
+      第<input id="qs" readonly="readonly" />圈
+      <input id="zf" readonly="readonly" />家庄
     </div>    
     <div id="hxs">
       混儿<div id="hxsm">
-        <span class="w4"></span><span class="w5"></span>
       </div>
     </div>
   </header>
   <div id="sp">
-    <div id="sp1" class="p0"><div class="w4"></div><div class="w4"></div><div class="w4"></div><div class="w4"></div><div class="w4"></div><div class="w4"></div><div class="w4"></div><div class="w4"></div><div class="w4"></div><div class="w4"></div><div class="w4"></div><div class="w4"></div><div class="w4"></div></div>
-    <div id="sp2" class="p1"><div class="w4"></div><div class="w4"></div><div class="w4"></div><div class="w4"></div><div class="w4"></div><div class="w4"></div><div class="w4"></div><div class="w4"></div><div class="w4"></div><div class="w4"></div><div class="w4"></div><div class="w4"></div><div class="w4"></div><div class="w4"></div></div>
-    <div id="sp3" class="p2 xs"><div class="w4"></div><div class="w4"></div><div class="w4"></div><div class="w4"></div><div class="w4"></div><div class="w4"></div><div class="w4"></div><div class="w4"></div><div class="w4"></div><div class="w4"></div><div class="w4"></div><div class="w4"></div><div class="w4"></div><div class="w4"></div></div>
-    <div id="sp4" class="p3"><div class="w4"></div><div class="w4"></div><div class="w4"></div><div class="w4"></div><div class="w4"></div><div class="w4"></div><div class="w4"></div><div class="w4"></div><div class="w4"></div><div class="w4"></div><div class="w4"></div><div class="w4"></div><div class="w4"></div><div class="w4"></div></div>
+    <div id="sp1"></div>
+    <div id="sp2"></div>
+    <div id="sp3"></div>
+    <div id="sp4"></div>
   </div>
   <div id="fs">
-    <div id="fs1"><input type="text" readonly="readonly" id="zc1" value="北" /><input type="number" readonly="readonly" id="scr1" value="250" /></div>
-    <div id="fs2"><input type="text" readonly="readonly" id="zc2" value="东" /><input type="number" readonly="readonly" id="scr2" value="250" /></div>
-    <div id="fs3"><input type="text" readonly="readonly" id="zc3" value="南" /><input type="number" readonly="readonly" id="scr3" value="250" /></div>
-    <div id="fs4"><input type="text" readonly="readonly" id="zc4" value="西" /><input type="number" readonly="readonly" id="scr4" value="250" /></div>
+    <div id="fs1"><input type="text" readonly="readonly" id="zc1" /><input type="number" readonly="readonly" id="scr1" /></div>
+    <div id="fs2"><input type="text" readonly="readonly" id="zc2" /><input type="number" readonly="readonly" id="scr2" /></div>
+    <div id="fs3"><input type="text" readonly="readonly" id="zc3" /><input type="number" readonly="readonly" id="scr3" /></div>
+    <div id="fs4"><input type="text" readonly="readonly" id="zc4" /><input type="number" readonly="readonly" id="scr4" /></div>
   </div>
   <div id="xp">
-    <div id="xz">
+    <div id="xz" style="display:none;">
       <div id="xzm"><button id="peng">碰</button><button id="gang">杠</button><button id="hu">和</button><button id="quxiao">取消</button></div>
     </div>
-    <div id="dc" style="display:none;">
-      <div id="dcm"><input id="dcp" value="东" />家打出<div class="w4"></div></div>
+    <div id="dc">
+      <div id="dcm"><input id="dcp" />家打出<div id="dcz" class="z9"></div></div>
     </div>
-    <div id="huangp">
+    <div id="huangp" style="display:none;">
       荒牌
     </div>
     <div id="pc">
-      <div id="pc1"><div class="t4"></div><div class="t4"></div><div class="t4"></div><div class="t4"></div><div class="b4"></div><div class="w4"></div><div class="w4"></div><div class="w4"></div><div class="w4"></div><div class="w4"></div><div class="w4"></div><div class="w4"></div><div class="w4"></div><div class="w4"></div><div class="w4"></div><div class="w4"></div><div class="w4"></div><div class="w4"></div><div class="w4"></div><div class="w4"></div><div class="w4"></div><div class="w4"></div><div class="w4"></div><div class="w4"></div><div class="w4"></div><div class="w4"></div><div class="w4"></div></div>
-      <div id="pc2"><div class="t4"></div><div class="t4"></div><div class="t4"></div><div class="t4"></div><div class="b4"></div><div class="w4"></div><div class="w4"></div><div class="w4"></div><div class="w4"></div><div class="w4"></div><div class="w4"></div><div class="w4"></div><div class="w4"></div><div class="w4"></div><div class="w4"></div><div class="w4"></div><div class="w4"></div><div class="w4"></div><div class="w4"></div><div class="w4"></div><div class="w4"></div><div class="w4"></div><div class="w4"></div><div class="w4"></div><div class="w4"></div><div class="w4"></div><div class="w4"></div></div>
-      <div id="pc3"><div class="t4"></div><div class="t4"></div><div class="t4"></div><div class="t4"></div><div class="b4"></div><div class="w4"></div><div class="w4"></div><div class="w4"></div><div class="w4"></div><div class="w4"></div><div class="w4"></div><div class="w4"></div><div class="w4"></div><div class="w4"></div><div class="w4"></div><div class="w4"></div><div class="w4"></div><div class="w4"></div><div class="w4"></div><div class="w4"></div><div class="w4"></div><div class="w4"></div><div class="w4"></div><div class="w4"></div><div class="w4"></div><div class="w4"></div><div class="w4"></div></div>
-      <div id="pc4"><div class="t4"></div><div class="t4"></div><div class="t4"></div><div class="t4"></div><div class="b4"></div><div class="w4"></div><div class="w4"></div><div class="w4"></div><div class="w4"></div><div class="w4"></div><div class="w4"></div><div class="w4"></div><div class="w4"></div><div class="w4"></div><div class="w4"></div><div class="w4"></div><div class="w4"></div><div class="w4"></div><div class="w4"></div><div class="w4"></div><div class="w4"></div><div class="w4"></div><div class="w4"></div><div class="w4"></div><div class="w4"></div><div class="w4"></div><div class="w4"></div></div>
+      <div id="pc1"></div>
+      <div id="pc2"></div>
+      <div id="pc3"></div>
+      <div id="pc4"></div>
     </div>
   </div>
   <div id="hup" style="display:none;">
-    <div id="hupj"><input type="text" value="南" readonly="readonly" id="hupwz" /></div>
-    <div id="hup1" class="p2"><div class="w4"></div><div class="w4"></div><div class="w4"></div><div class="w4"></div><div class="w4"></div><div class="w4"></div><div class="w4"></div><div class="w4"></div><div class="w4"></div><div class="w4"></div><div class="w4"></div><div class="w4"></div><div class="w4"></div><div class="w4"></div></div>
-    <div id="hup2"><div class="w4"></div><div class="w4"></div><div class="w4"></div><div class="w4"></div><div class="w4"></div><div class="w4"></div><div class="w4"></div><div class="w4"></div><div class="w4"></div><div class="w4"></div><div class="w4"></div><div class="w4"></div><div class="w4"></div><div class="w4"></div></div>
-    <div id="hupm"><input type="text" value="双混儿捉伍儿本混儿龙(28)" readonly="readonly" id="hupms" /></div>
+    <div id="hupj"><input type="text" readonly="readonly" id="hupwz" /></div>
+    <div id="hup1"></div>
+    <div id="hup2"></div>
+    <div id="hupm"><input type="text" readonly="readonly" id="hupms" /></div>
   </div>
 </div>
 </body>

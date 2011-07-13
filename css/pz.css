@@ -5,7 +5,8 @@
 .w1, .w2, .w3, .w4, .w5, .w6, .w7, .w8, .w9,
 .b1, .b2, .b3, .b4, .b5, .b6, .b7, .b8, .b9,
 .t1, .t2, .t3, .t4, .t5, .t6, .t7, .t8, .t9,
-.z1, .z2, .z3, .z4, .z5, .z6, .z7 {
+.z1, .z2, .z3, .z4, .z5, .z6, .z7, .z8, .z9,
+.z0 {
   display:inline-block;
   height:60px;
   width:42px;
@@ -43,7 +44,7 @@
 .t7 { background-image:url("../tp/t/7.png"); }
 .t8 { background-image:url("../tp/t/8.png"); }
 .t9 { background-image:url("../tp/t/9.png"); }
-.z1 { background-image:url("../tp/z/1.png"); }
+.z0 { background-image:url("../tp/z/0.png"); }
 .z1 { background-image:url("../tp/z/1.png"); }
 .z2 { background-image:url("../tp/z/2.png"); }
 .z3 { background-image:url("../tp/z/3.png"); }
@@ -51,3 +52,5 @@
 .z5 { background-image:url("../tp/z/5.png"); }
 .z6 { background-image:url("../tp/z/6.png"); }
 .z7 { background-image:url("../tp/z/7.png"); }
+.z8 { background-image:url("../tp/z/8.png"); }
+.z9 { background-image:url("../tp/z/9.png"); }
