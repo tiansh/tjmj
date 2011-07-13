@@ -1,0 +1,63 @@
+#hup>div {
+  position:relative;
+}
+#hupj {
+  display:inline-block;
+  top:160px;
+  left:110px;
+}
+
+#hupj>input {
+  width:20px;
+}
+
+#hup1, #hup2 {
+  left:140px;
+}
+
+#hup1 {
+  top:110px;
+}
+
+#hup2 {
+  top:170px;
+}
+
+#hupm {
+  top:50px;
+  left:140px;
+}
+
+#hupms {
+  width:300px;
+}
+
+#hup1.p0>:nth-child(14),
+#hup1.p1>:nth-child(11),
+#hup1.p2>:nth-child( 8),
+#hup1.p3>:nth-child( 5),
+#hup1.p4>:nth-child( 2)
+{
+  margin-left:16px;
+}
+
+#hup1.p1>:nth-child(n+12),
+#hup1.p2>:nth-child(n+9),
+#hup1.p3>:nth-child(n+6),
+#hup1.p4>:nth-child(n+3)
+{
+  margin-left:-8px;
+}
+
+#hup1.p1>:nth-child(3n+12),
+#hup1.p2>:nth-child(3n+9),
+#hup1.p3>:nth-child(3n+6),
+#hup1.p4>:nth-child(3n+3)
+{
+  margin-left:16px !important;
+}
+
+#hup2>:nth-child(3n+4)
+{
+  margin-left:12px;
+}

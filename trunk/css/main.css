@@ -1,0 +1,80 @@
+@charset "utf-8";
+/* CSS Document */
+
+body, input, button, #main_body {
+  font-size:18px;
+  font-family:Microsoft YaHei,arial,tahoma,sans-serif,verdana;
+  border:0 none;
+  margin:0;
+  padding:0;
+  background:transparent;
+  color:#FFF;
+}
+
+body {
+  background:#8C8;
+  overflow:hidden;
+}
+
+#main_body {
+  width:800px;
+  height:600px;
+  background:#596;
+  margin:auto;
+  border:#000;
+}
+
+
+/* 上部文本 */
+header {
+  display:block;
+  position:static;
+  width:100%;
+  float:none;
+  margin:0px;
+  height:18px;
+  padding:16px 0;
+}
+header>div {
+  position:relative;
+  float:left;
+}
+#gz {
+  margin:0 0 0 40px;
+}
+#gzsd {
+  cursor:pointer;
+}
+#sy_d {
+  margin:0 0 0 160px;
+}
+#sy {
+  width:1.5em;
+}
+#qszf_d {
+  margin:0 0 0 20px;
+}
+#qs {
+  width:0.75em;
+}
+#zf {
+  width:1em;
+}
+#hxs {
+  margin:0 0 0 140px;
+}
+#hxsm {
+  position:relative;
+  float:right;
+  margin:-26px 0;
+}
+
+#xp, #sp, #pc, #fs, #xz, #dc, #hup {
+  display:block;
+  position:static;
+  float:none;
+  width:800px;
+  height:550px;
+  top:50px;
+  margin:0 0 -550px 0;
+}
