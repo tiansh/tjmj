@@ -1,0 +1,29 @@
+#xzm {
+  display:inline-block;
+  position:relative;
+  top:430px;
+  left:80px;
+}
+
+#xzm>button {
+  width:32px; height:32px;
+  border:1px solid #FFF;
+  margin:0 -1px 0 0;
+  font-size:18px;
+}
+
+#xzm>button:hover {
+  cursor:pointer;
+}
+
+#xzm>button:last-child {
+  width:48px;
+}
+
+#xzm>button[disabled] {
+  color:#CCC;
+}
+
+#xzm>button[disabled]:hover {
+  cursor:auto;
+}
