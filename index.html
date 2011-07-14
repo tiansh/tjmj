@@ -5,6 +5,7 @@
   <title>天津麻将</title>
   <script src="js/zhang.js"></script> <!-- 牌张 -->
   <script src="js/pq.js"></script>    <!-- 牌墙 -->
+  <script src="js/ba.js"></script>  <!-- 判断和牌 -->
   <script src="js/test.js"></script>
   <link rel="stylesheet" href="css/main.css" />   <!-- 主体 -->
   <link rel="stylesheet" href="css/pz.css" />     <!-- 牌张 -->
@@ -19,20 +20,21 @@
 <div id="main_body">
   <header>
     <div id="gz">
-      <button id="gzsd">规则设定</button>
+      <button id="gzsd" style="display:none;">规则设定</button>
     </div>
     <div id="sy_d">
-      剩余<input id="sy" readonly="readonly" />张
+      剩余<input id="sy" readonly="readonly" tabindex="-1" />张
     </div>
     <div id="qszf_d">
-      第<input id="qs" readonly="readonly" />圈
-      <input id="zf" readonly="readonly" />家庄
+      第<input id="qs" readonly="readonly" tabindex="-1" />圈
+      <input id="zf" readonly="readonly" tabindex="-1" />家庄
     </div>    
     <div id="hxs">
       混儿<div id="hxsm">
       </div>
     </div>
   </header>
+  <div id="act" class="p3"></div>
   <div id="sp">
     <div id="sp1"></div>
     <div id="sp2"></div>
@@ -40,17 +42,14 @@
     <div id="sp4"></div>
   </div>
   <div id="fs">
-    <div id="fs1"><input type="text" readonly="readonly" id="zc1" /><input type="number" readonly="readonly" id="scr1" /></div>
-    <div id="fs2"><input type="text" readonly="readonly" id="zc2" /><input type="number" readonly="readonly" id="scr2" /></div>
-    <div id="fs3"><input type="text" readonly="readonly" id="zc3" /><input type="number" readonly="readonly" id="scr3" /></div>
-    <div id="fs4"><input type="text" readonly="readonly" id="zc4" /><input type="number" readonly="readonly" id="scr4" /></div>
+    <div id="fs1"><input type="text" readonly="readonly" id="zc1" tabindex="-1" /><input type="number" readonly="readonly" id="scr1" tabindex="-1" /></div>
+    <div id="fs2"><input type="text" readonly="readonly" id="zc2" tabindex="-1" /><input type="number" readonly="readonly" id="scr2" tabindex="-1" /></div>
+    <div id="fs3"><input type="text" readonly="readonly" id="zc3" tabindex="-1" /><input type="number" readonly="readonly" id="scr3" tabindex="-1" /></div>
+    <div id="fs4"><input type="text" readonly="readonly" id="zc4" tabindex="-1" /><input type="number" readonly="readonly" id="scr4" tabindex="-1" /></div>
   </div>
   <div id="xp">
-    <div id="xz" style="display:none;">
+    <div id="xz">
       <div id="xzm"><button id="peng">碰</button><button id="gang">杠</button><button id="hu">和</button><button id="quxiao">取消</button></div>
-    </div>
-    <div id="dc">
-      <div id="dcm"><input id="dcp" />家打出<div id="dcz" class="z9"></div></div>
     </div>
     <div id="huangp" style="display:none;">
       荒牌
@@ -60,13 +59,14 @@
       <div id="pc2"></div>
       <div id="pc3"></div>
       <div id="pc4"></div>
+      <div id="dcm"><input id="dcp" tabindex="-1" />家打出<div id="dcz" class="z9"></div></div>
     </div>
   </div>
   <div id="hup" style="display:none;">
-    <div id="hupj"><input type="text" readonly="readonly" id="hupwz" /></div>
+    <div id="hupj"><input type="text" readonly="readonly" id="hupwz" tabindex="-1" /></div>
     <div id="hup1"></div>
     <div id="hup2"></div>
-    <div id="hupm"><input type="text" readonly="readonly" id="hupms" /></div>
+    <div id="hupm"><input type="text" readonly="readonly" id="hupms" tabindex="-1" /></div>
   </div>
 </div>
 </body>

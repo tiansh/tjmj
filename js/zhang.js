@@ -1,5 +1,5 @@
 // 牌张的代码
-zhang=function (lb,sz) {
+var zhang=function (lb,sz) {
   // lb表示类别
   // 0=字 1=万 2=饼 3=条
   this.lb=lb;
@@ -10,6 +10,7 @@ zhang=function (lb,sz) {
 zhang.prototype.numhuir = 2;
 zhang.prototype.zzhang = [7, 9, 9, 9];
 zhang.prototype.zdir = ["z", "w", "b", "t"];
+var ww=new zhang(1,5);
 
 // 设定混儿
 zhang.prototype.sethuir=function () {
@@ -30,6 +31,12 @@ zhang.prototype.sethuir=function () {
         zhang.prototype.huir[i].sz===5)
       zhang.prototype.huir[i].sz = 1;
   }
+  
+  // 显示
+  var d=document.getElementById("hxsm");
+  while (d.firstChild) d.removeChild(d.firstChild);
+  for (var i=0;i<zhang.prototype.numhuir;i++)
+    d.appendChild(zhang.prototype.huir[i].divtag());
 }
 
 // 判断两张牌是否相同
@@ -47,4 +54,18 @@ zhang.prototype.samehuir=function () {
 // 转换成字符串类型
 zhang.prototype.chr=function () {
   return zhang.prototype.zdir[this.lb]+this.sz;
+}
+
+// 返回这张牌的divtag
+zhang.prototype.divtag=function (o) {
+  if (typeof(o)!=="undefined" && o) {
+    var d=document.createElement("div");
+    d.appendChild(this.divtag());
+    d.appendChild(this.divtag());
+    d.className="g2";
+    return d;
+  }
+  var d=document.createElement("div");
+  d.className=zhang.prototype.zdir[this.lb]+this.sz;
+  return d;
 }

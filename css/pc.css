@@ -43,3 +43,27 @@
   top:-490px;
   left:230px;
 }
+
+#pc>div:empty+div:empty+div:empty+div:empty+#dcm {
+  display:none;
+}
+
+#sp>div:not(:empty)~#dcm {
+  display:inline-block;
+}
+
+#dcm {
+  position:relative;
+  top:-630px;
+  left:345px;
+  padding:16px 0;
+  height:18px;
+}
+
+#dcm>input {
+  width:1em;
+}
+
+#dcm>div {
+  margin:-16px 0;
+}
