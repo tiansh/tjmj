@@ -36,7 +36,6 @@
   left:135px;
 }
 
-
 #sp>.p0>:nth-child(14),
 #sp>.p1>:nth-child(11),
 #sp>.p2>:nth-child( 8),
@@ -63,21 +62,41 @@
 }
 
 
-#sp>#sp4.p0>div:hover,
-#sp>#sp4.p1>div:nth-last-child(n+4):hover,
-#sp>#sp4.p2>div:nth-last-child(n+7):hover,
-#sp>#sp4.p3>div:nth-last-child(n+10):hover,
-#sp>#sp4.p4>div:nth-last-child(n+13):hover
+#act.p4~#sp>#sp4.p0>div:hover,
+#act.p4~#sp>#sp4.p1>div:nth-last-child(n+4):hover,
+#act.p4~#sp>#sp4.p2>div:nth-last-child(n+7):hover,
+#act.p4~#sp>#sp4.p3>div:nth-last-child(n+10):hover,
+#act.p4~#sp>#sp4.p4>div:nth-last-child(n+13):hover
 {
   background-position:0 0;
   cursor:pointer;
 }
 
-#sp>:not(#sp4):not(.xs).p0>div,
-#sp>:not(#sp4):not(.xs).p1>div:nth-last-child(n+4),
-#sp>:not(#sp4):not(.xs).p2>div:nth-last-child(n+7),
-#sp>:not(#sp4):not(.xs).p3>div:nth-last-child(n+10),
-#sp>:not(#sp4):not(.xs).p4>div:nth-last-child(n+13)
+#sp>:not(#sp4):not(.xs).p0>div:not(.z9),
+#sp>:not(#sp4):not(.xs).p1>div:not(.z9):nth-last-child(n+4),
+#sp>:not(#sp4):not(.xs).p2>div:not(.z9):nth-last-child(n+7),
+#sp>:not(#sp4):not(.xs).p3>div:not(.z9):nth-last-child(n+10),
+#sp>:not(#sp4):not(.xs).p4>div:not(.z9):nth-last-child(n+13)
 {
   background-image:url("../tp/z/8.png");
+}
+
+#act:not(.p4)~#xp>#xz {
+  display:none;
+}
+#act.p4~#xp>#xz {
+  display:inline-block;
+}
+
+#sp>div>div.g2 {
+  display:inline;
+}
+#sp>div>div.g2>div:first-child {
+  margin-left:-11px;
+}
+#sp>div>div.g2>div:nth-child(2) {
+  margin-left:-19px;
+}
+#sp>div>div.g2+div {
+  margin-left:-19px !important;
 }

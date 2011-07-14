@@ -12,24 +12,50 @@ var pq=function () {
     this[i]=a[i];
   this.length=136;
   this.pos=0;
+  this.last=136;
   this.huir=136;
 }
 
-
 // 打混儿
 pq.prototype.dhuir=function () {
-  
+  this.huir=136-2*(
+    Math.floor(Math.random()*6+1)+
+    Math.floor(Math.random()*6+1)
+  );
+  this.printnum();
+  return this[this.huir];
+}
+
+// 剩余张数
+pq.prototype.num=function () {
+  // 到杠底就算荒牌
+  return Math.min(this.last, this.huir) - this.pos;
 }
 
 // 抓一张牌
-// 荒牌时抛出异常
 pq.prototype.getp=function () {
-  
+  var pz;
+  if (this.num()) pz = this[this.pos++];
+  else pz = null;
+  // 重新显示剩余张数
+  this.printnum();
+  return pz;
 }
 
 // 抓杠底牌
-// 荒牌时抛出异常
 pq.prototype.getlp=function () {
-  
+  --this.last;
+  // 如果混儿后面的都抓到了则跳过以继续
+  if (this.last==this.huir) --this.last;
+  if (this.last>this.huir) pz = this[this.last];
+  else if (this.num()) pz = this[this.last];
+  else pz = null;
+  // 重新显示剩余张数
+  this.printnum();
+  return pz;
 }
 
+// 显示剩余张数
+pq.prototype.printnum=function () {
+  document.getElementById("sy").value=this.num();
+}
