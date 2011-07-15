@@ -118,7 +118,7 @@ ba.prototype.kyhu=function () {
       if (huir>=2 && a[i]===1 && 
         (i===9 || a[i+1]===0) && 
         (i===8 || a[i+2]===0)
-      ) {
+      ) { // AHH
         c=a; c[i]--;
         if (panduanl(c,huir-2)) return true;
       }
