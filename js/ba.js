@@ -1,12 +1,17 @@
 // 手牌
-var ba=function (pos, a) {
-  var h = new Array(14);
+var ba=function () {
+  var i;
+  for (i=0;i<=13;i++) this[i]=new zhang(0,0);
+  this.pos=0; this.peng=0;
+  this.gang=[false, false, false, false];
+}
+
+// 初始化
+ba.prototype.init=function (pos, a) {
   var i;
   for (i=0;i<13;i++)
-    h[i]=a.getp();
-  h[13]=new zhang(0,9);
-  for (i in h)
-    this[i]=h[i];
+    this[i]=a.getp();
+  this[13]=new zhang(0,9);
   // 谁的手牌
   this.pos=pos;
   // 碰杠了几对
@@ -16,10 +21,10 @@ var ba=function (pos, a) {
   // 理牌
   this.sort();
 }
-
 ba.prototype.length=14;
+// 除去碰杠外剩余的张数
 ba.prototype.pz=function () {
-  return 14-this.peng*3;
+  return ba.prototype.length-this.peng*3;
 }
 
 // 显示
@@ -46,7 +51,7 @@ ba.prototype.sort=function () {
     return -10*(a.lb-b.lb)+(a.sz-b.sz);
   };
   // 只对没有碰的牌进行排序
-  var t=14-this.peng*3;
+  var t=ba.prototype.length-this.peng*3;
   var i, j;
   for (i=0;i<t-1;i++) for (j=i+1;j<t;j++)
     if (zhangcmp(this[i],this[j])>0) {
@@ -65,7 +70,6 @@ var pdhpl=function () {
   this.j =new zhang(0,0);
   this.numwbt=[0,0,0,0];
 }
-
 
 // 判断和牌
 ba.prototype.pdhp=function () {
@@ -290,14 +294,14 @@ ba.prototype.pdhp=function () {
   // 对给定牌型命名
   var mingming=function (mh,hd,zw,l,lb) {
     var s="";
-    if (mh) s+="没混儿";
-    if (hd===2) s+="双";
-    if (hd>0) s+="混儿";
-    if (hd>0 && !zw) s+="吊";
-    if (zw&&(s===""||l)) s+="捉";
-    if (zw) s+="伍儿";
-    if (l&&lb) s+="本混儿";
-    if (l) s+="龙";
+    if (mh) s+=ZH_M+ZH_H+ZH_E;            
+    if (hd===2) s+=ZH_S;            
+    if (hd>0) s+=ZH_H+ZH_E;            
+    if (hd>0 && !zw) s+=ZH_I;
+    if (zw&&(s===""||l)) s+=ZH_Z;
+    if (zw) s+=ZH_W+ZH_E;
+    if (l&&lb) s+=ZH_3+ZH_H+ZH_E;
+    if (l) s+=ZH_L;
     return s;
   }
   // 选择最大的番种
@@ -324,7 +328,8 @@ ba.prototype.pdhp=function () {
   }
   // OT.value=panduan(t,false,true,true,last).ky;
   var r=xuanze(t,last);
-  OT.value=r.mc+"("+r.dx+")";
+  return r;
   
 }
 
+var sp=[new ba(), new ba(), new ba(), new ba()];
