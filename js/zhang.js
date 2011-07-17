@@ -69,3 +69,12 @@ zhang.prototype.divtag=function (o) {
   d.className=zhang.prototype.zdir[this.lb]+this.sz;
   return d;
 }
+
+// 由className返回对应的张
+zhang.prototype.dcdt=function (s) {
+  var i, j;
+  for (i=0;i<=3;i++)
+    if (s.charAt(0)===zhang.prototype.zdir[i]) break;
+  this.lb=i
+  this.sz=s.charCodeAt(1)-48;
+}
