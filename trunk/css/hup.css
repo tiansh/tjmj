@@ -2,9 +2,11 @@
   position:relative;
 }
 #hupj {
-  display:inline-block;
+  display:block;
   top:160px;
   left:110px;
+  height:32px;
+  margin:0 0 -32px 0;
 }
 
 #hupj>input {
@@ -13,19 +15,24 @@
 
 #hup1, #hup2 {
   left:140px;
+  height:60px;
+  margin:0 0 -60px 0;
 }
 
 #hup1 {
-  top:110px;
+  top:140px;
 }
 
 #hup2 {
-  top:170px;
+  top:250px;
 }
 
 #hupm {
-  top:50px;
+  display:block;
+  height:32px;
+  top:210px;
   left:140px;
+  margin:0 0 -32px 0;
 }
 
 #hupms {

@@ -29,6 +29,7 @@ ba.prototype.pdhp=function (g) {
     this.length=4;
   }
   tiao.prototype=Array.prototype;
+  // 赋值
   tiao.prototype.copy=function (t) {
     var i, j;
     for (i=0;i<4;i++)
@@ -48,8 +49,13 @@ ba.prototype.pdhp=function (g) {
     }
     return b;
   }
+  // t为传入的数据化为该类型后的变量
+  var t=ba2tiao(this);
+  // last为最后一张牌
+  var last=this[this.pz()-1];
   // 判断万、饼、条中的一种是否满足条件
-  var t=ba2tiao(this); var last=this[13];
+  // 下列分类中，字母对应牌面叙述
+  // H表示混儿
   var panduanl=function (a,huir) {
     var i;
     for (i=1;i<=9;i++) if (a[i]) break;
@@ -98,9 +104,12 @@ ba.prototype.pdhp=function (g) {
   }
   // 判断除了将以外的牌能否和牌
   var panduanf=function(a) {
+    // h表示混儿的分配情况
+    // 要求保证分配等于总数
+    // 每种花色的牌张数最后正好是三的倍数
     var h=[panduanz(a[0]),0,0,0];
-    for ( h[1]=(12-a[1][0])%3;h[0]+h[1]           <=a[0][8];h[1]+=3)
-     for (h[2]=(12-a[2][0])%3;h[0]+h[1]+h[2]      <=a[0][8];h[2]+=3) {
+    for ( h[1]=(12-a[1][0])%3;h[0]+h[1]     <=a[0][8];h[1]+=3)
+     for (h[2]=(12-a[2][0])%3;h[0]+h[1]+h[2]<=a[0][8];h[2]+=3) {
        h[3]=a[0][8]-(h[0]+h[1]+h[2]);
        if (panduanl(a[1],h[1])&&panduanl(a[2],h[2])&&panduanl(a[3],h[3])) {
          numwbt=h; return true;
@@ -112,14 +121,17 @@ ba.prototype.pdhp=function (g) {
   var xiaohu=function (t) {
     var a=new tiao; a.copy(t);
     var i,j;
+    // 枚举做将的牌
     for (i=0;i<4;i++)
      for (j=1;j<=zhang.prototype.zzhang[i];j++)
      if (a[i][j]>=2) {
+       // 用两张这个的牌
        a[i][j]-=2; a[i][0]-=2;
        jiang=new zhang(i,j);
        if (panduanf(a)) return true;
        a[i][j]+=2; a[i][0]+=2;
      } else if (a[i][j]===1) {
+       // 用一张这个牌和一张混儿
        a[i][j]--; a[i][0]--; a[0][8]--;
        jiang=new zhang(i,j);
        if (panduanf(a)) return true;
