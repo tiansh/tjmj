@@ -5,16 +5,12 @@ var callfunc=function (func) {
   setTimeout(func,0);
 }
 
-var zpos=0;
+var zpos=0, ppos=0;
 var dapc=new zhang(0,0);
 var gs=false;
 
 
 var ainit=function () {
-  // document.getElementById("peng"  ).onclick=  peng_wj;
-  // document.getElementById("gang"  ).onclick=  gang_wj;
-  // $i("hu"    ).onclick=    hup;
-  // document.getElementById("quxiao").onclick=quxiao_wj;
   callfunc(minit);
 }
 
@@ -37,7 +33,6 @@ var jinit=function () {
     sp[i].print();
   }
   zpos=zhuang.nzhuang+zhuang.dong-3;
-  // zpos=zhuang.dong+zhuang.
   callfunc(zhuap);
 }
 
@@ -53,8 +48,6 @@ var zhuap=function () {
   zpos=++zpos%4;
   sp[zpos][sp[zpos].pz()-1]=z;
   sp[zpos].print();
-  // 设置显示样式
-  document.getElementById("act").className="p"+(zpos+1);
   // 设置当前状态为不是杠底
   gs=false;
   callfunc(dap)
@@ -62,7 +55,11 @@ var zhuap=function () {
 
 // 打牌
 var dap=function () {
-  if (zpos+1===4) callfunc(dap_wj);
+  clearButtons();
+  // 设置显示样式
+  document.getElementById("act").className="p"+(zpos+1);
+  // 根据玩家和电脑分类
+  if (zpos===3) callfunc(dap_wj);
   else callfunc(dap_dn);
 }
 
@@ -86,12 +83,65 @@ var dap_dn=function () {
   callfunc(dac);
 }
 
+// 电脑选择碰杠
+var pg_dn=function () {
+  peng();
+}
+
+// 玩家选择碰杠
+var pg_wj=function () {
+  var i, c;
+  for (c=0,i=0;i<sp[3].pz();i++)
+    if (sp[3][i].same(dapc)) c++;
+  if (c===3)
+    setButtons([{n:"碰牌",f:peng},{n:"杠牌",f:dmgang}]);
+  else
+    setButtons([{n:"碰牌",f:peng}]);
+}
+
+// 处理碰牌
+var peng=function () {
+  var i, c, j, s=sp[ppos];
+  s[s.pz()-1]=new zhang(dapc.lb, dapc.sz);
+  for (c=i=0,j=s.pz()-1;i<j&&c<2;)
+    if (s[j].same(dapc)) j--;
+    else if (s[i].same(dapc)) {
+      s[i]=new zhang(s[j].lb,s[j].sz);
+      s[j]=new zhang(dapc.lb,dapc.sz);
+      c++;
+    }
+    else i++;
+  s.peng++;
+  s.print();
+  zpos=ppos;
+  callfunc(dap);
+}
+
+// 处理大明杠
+var dmgang=function () {
+  var i, c, j, s=sp[ppos];
+  s[s.pz()-1]=new zhang(dapc.lb, dapc.sz);
+  for (c=i=0,j=s.pz()-1;i<j&&c<3;)
+    if (s[j].same(dapc)) j--;
+    else if (s[i].same(dapc)) {
+      s[i]=new zhang(s[j].lb,s[j].sz);
+      s[j]=new zhang(dapc.lb,dapc.sz);
+      c++;
+    }
+    else i++;
+  s.peng++;
+  s.print();
+  zpos=ppos;
+  callfunc(dap);
+}
+
+
 // 打牌打出
 var dac=function () {
   // 从手牌中去掉这张牌
-  var l=sp[zpos].pz(), i;
+  var l=sp[zpos].pz(), i, j, c;
   for (i=0;i<=l;i++) if (sp[zpos][i].same(dapc)) break;
-  if (i>l) { call(dap); return; }
+  if (i>l) { callfunc(dap); return; }
   sp[zpos][i]=new zhang(0,9);
   sp[zpos].sort();
   sp[zpos].print();
@@ -101,6 +151,16 @@ var dac=function () {
   $i("dcp").value=ZH_DNXB[(zhuang.dong+3-zpos)%4];
   $i("dcz").className=dapc.divtag().className;
   // 询问碰杠
+  for (i=0;i<4;i++) if (i!=zpos) {
+    for (c=0,j=0;j<sp[i].pz();j++)
+      if (sp[i][j].same(dapc)) c++;
+    if (c>=2) {
+      ppos=i;
+      if (i===3) callfunc(pg_wj);
+      else callfunc(pg_dn);
+      return;
+    }
+  }
   // 如果无人能碰杠则下一家抓牌
   callfunc(zhuap);
 }

@@ -15,18 +15,30 @@
 
 #sp1 {
   -moz-transform:rotate(90deg);
+  -o-transform:rotate(90deg);
+  -webkit-transform:rotate(90deg);
+  -ms-transform:rotate(90deg);
+  transform:rotate(90deg);
   top:240px;
   left:-215px;
 }
 
 #sp2 {
   -moz-transform:rotate(180deg);
+  -o-transform:rotate(180deg);
+  -webkit-transform:rotate(180deg);
+  -ms-transform:rotate(180deg);
+  transform:rotate(180deg);
   top:20px;
   left:135px;
 }
 
 #sp3 {
   -moz-transform:rotate(270deg);
+  -o-transform:rotate(270deg);
+  -webkit-transform:rotate(270deg);
+  -ms-transform:rotate(270deg);
+  -transform-transform:rotate(270deg);
   top:240px;
   left:485px;
 }
@@ -81,9 +93,6 @@
   background-image:url("../tp/z/8.png");
 }
 
-#act:not(.p4)~#xp>#xz {
-  display:none;
-}
 #act.p4~#xp>#xz {
   display:inline-block;
 }
