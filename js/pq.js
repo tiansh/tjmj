@@ -71,7 +71,7 @@ tppq.prototype.getlp=function () {
 
 // 显示剩余张数
 tppq.prototype.printnum=function () {
-  document.getElementById("sy").value=this.num();
+  $i("sy").value=this.num();
 }
 
 var pq=new tppq;

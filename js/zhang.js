@@ -1,6 +1,6 @@
 // 牌张的代码
 var zhang=function (lb,sz) {
-  // lb表示类别
+  // lb表示花色
   // 0=字 1=万 2=饼 3=条
   this.lb=lb;
   this.sz=sz;
@@ -24,16 +24,20 @@ zhang.prototype.sethuir=function () {
       zhang.prototype.huir[i-1].sz+1
     );
     // 最后一张则下一张为第一张
-    if (zhang.prototype.huir[i].sz >
-        zhang.prototype.zzhang[zhang.prototype.huir[i].lb])
+    if (zhang.prototype.huir[i].sz===10)
       zhang.prototype.huir[i].sz = 1;
-    if (zhang.prototype.huir[i].lb===0 &&
-        zhang.prototype.huir[i].sz===5)
-      zhang.prototype.huir[i].sz = 1;
+    // 字牌的特殊判断
+    if (zhang.prototype.huir[i].lb===0)
+      // 北风后面是东风
+      if (zhang.prototype.huir[i].sz===5)
+        zhang.prototype.huir[i].sz = 1;
+      // 白板后面是红中
+      else if (zhang.prototype.huir[i].sz===8)
+        zhang.prototype.huir[i].sz = 5;
   }
   
   // 显示
-  var d=document.getElementById("hxsm");
+  var d=$i("hxsm");
   while (d.firstChild) d.removeChild(d.firstChild);
   for (var i=0;i<zhang.prototype.numhuir;i++)
     d.appendChild(zhang.prototype.huir[i].divtag());
@@ -58,6 +62,8 @@ zhang.prototype.chr=function () {
 
 // 返回这张牌的divtag
 zhang.prototype.divtag=function (o) {
+  // 如果为o则返回一个包含着两张该牌的div
+  // 用于显示/表示杠牌是四张挤在一起的样子的中间两张
   if (typeof(o)!=="undefined" && o) {
     var d=document.createElement("div");
     d.appendChild(this.divtag());
@@ -65,6 +71,9 @@ zhang.prototype.divtag=function (o) {
     d.className="g2";
     return d;
   }
+  // className的命名规则是
+  // z,w,b,t表示花色后跟序数
+  // 如w5表示五万，z6表示发财
   var d=document.createElement("div");
   d.className=zhang.prototype.zdir[this.lb]+this.sz;
   return d;

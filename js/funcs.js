@@ -9,14 +9,11 @@ var zpos=0;
 var dapc=new zhang(0,0);
 var gs=false;
 
-var $i=function (id) {
-  return document.getElementById(id);
-};
 
 var ainit=function () {
   // document.getElementById("peng"  ).onclick=  peng_wj;
   // document.getElementById("gang"  ).onclick=  gang_wj;
-  document.getElementById("hu"    ).onclick=    hup;
+  // $i("hu"    ).onclick=    hup;
   // document.getElementById("quxiao").onclick=quxiao_wj;
   callfunc(minit);
 }
@@ -69,15 +66,11 @@ var dap=function () {
   else callfunc(dap_dn);
 }
 
+var a=function () { alert("!"); }
+
 // 玩家打牌——选择
 var dap_wj=function () {
-  $i("peng")  .disabled="disabled";
-  $i("gang")  .disabled="disabled";
-  $i("quxiao").disabled="disabled";
-  if (sp[3].pdhp(gs).ky)
-    $i("hu").disabled="";
-  else
-    $i("hu").disabled="disabled";
+  if (sp[3].pdhp(gs).ky) setButtons([{n:"和牌",f:hup}]);
   var i, l=sp[3].pz(), p=$i("sp4").childNodes;
   for (i=0;i<l;i++) p[i].onclick=dap_wj_i;
 }
@@ -104,15 +97,27 @@ var dac=function () {
   sp[zpos].print();
   // 在牌池中显示这张牌
   $i("pc"+(zpos+1)).appendChild(dapc.divtag());
+  // 在屏幕中央显示某家打出了这张牌
+  $i("dcp").value=ZH_DNXB[(zhuang.dong+3-zpos)%4];
+  $i("dcz").className=dapc.divtag().className;
   // 询问碰杠
   // 如果无人能碰杠则下一家抓牌
   callfunc(zhuap);
 }
 
+// 和牌时调用的函数
 var hup=function () {
+  var r=sp[zpos].pdhp(gs);
+  $i("hupwz").value=ZH_DNXB[(zhuang.dong+3-zpos)%4];
+  $i("hupms").value=r.mc+"("+r.dx+")";
+  var hup1=$i("hup1"), spn=$i("sp"+(zpos+1));
+  hup1.innerHTML=spn.innerHTML;
+  hup1.className=spn.className;
   $i("act").className="hup";
+  fs.df(r.dx,zpos+1,false);
 }
 
+// 荒牌时调用的函数
 var huangp=function () {
   $i("act").className="huangp";
 }
