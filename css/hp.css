@@ -2,7 +2,7 @@
   display:none;
 }
 
-#act:not(.hup)~#hp {
+#act:not(.hup)~#hup {
   display:none;
 }
 
