@@ -4,13 +4,12 @@
 #sp1, #sp2, #sp3, #sp4
  {
   border:0 none;
-  padding:0;
   display:block;
   position:relative;
   width:530px;
   height:60px;
   padding:0;
-  margin:0 0 -60px 0;
+  margin:0 0 -60px;
 }
 
 #sp1 {
@@ -94,21 +93,21 @@
 }
 
 #act.p4~#xp>#xz {
-  display:inline-block;
+  display:block;
 }
 #act.apg~#xp>#xz {
-  display:inline-block;
+  display:block;
 }
 
-#sp>div>div.g2 {
+div.g2 {
   display:inline;
 }
-#sp>div>div.g2>div:first-child {
+div.g2>div:first-child {
   margin-left:-11px;
 }
-#sp>div>div.g2>div:nth-child(2) {
+div.g2>div:nth-child(2) {
   margin-left:-19px;
 }
-#sp>div>div.g2+div {
+div.g2+div {
   margin-left:-19px !important;
 }

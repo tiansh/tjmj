@@ -69,7 +69,7 @@ header>div {
   margin:-26px 0;
 }
 
-#xp, #sp, #pc, #fs, #xz, #dc, #hup {
+#xp, #sp, #fs, #xz, #dc, #hup {
   display:block;
   position:static;
   float:none;

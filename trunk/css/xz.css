@@ -2,13 +2,16 @@
   display:block;
   left:80px;
   position:relative;
-  text-align:right;
   top:425px;
   width:580px;
+  height:32px;
+  margin:0 0 -32px;
+  text-align:right;
 }
 
 #xzm>button {
-  width:64px; height:32px;
+  height:28px;
+  padding:0 8px;
   text-align:center;
   border:1px solid #FFF;
   margin:0 -1px 0 0;
