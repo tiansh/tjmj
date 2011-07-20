@@ -49,7 +49,7 @@ tppq.prototype.num=function () {
 // 抓一张牌
 tppq.prototype.getp=function () {
   var pz;
-  if (this.num()) pz = this[this.pos++];
+  if (this.num()>0) pz = this[this.pos++];
   else pz = null;
   // 重新显示剩余张数
   this.printnum();
@@ -62,7 +62,7 @@ tppq.prototype.getlp=function () {
   // 如果混儿后面的都抓到了则跳过以继续
   if (this.last==this.huir) --this.last;
   if (this.last>this.huir) pz = this[this.last];
-  else if (this.num()) pz = this[this.last];
+  else if (this.num()>0) pz = this[this.last];
   else pz = null;
   // 重新显示剩余张数
   this.printnum();
