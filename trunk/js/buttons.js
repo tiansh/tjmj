@@ -18,6 +18,8 @@ var setButtons=function (arr) {
     d=document.createElement("button");
     d.innerHTML=arr[i].n;
     d.onclick=arr[i].f;
+    if (typeof(arr[i].v)!=="undefined")
+     d.value=arr[i].v;
     x.appendChild(d);
   }
   x.style.display="block";
