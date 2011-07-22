@@ -1,7 +1,7 @@
 @charset "utf-8";
 /* CSS Document */
 
-#fs>div
+#df>div
 {
   border:0 none;
   padding:0;
@@ -49,6 +49,6 @@
   left:80px;
 }
 
-#fs>div>input {
+#df>div>input {
   width:2em;
 }

@@ -1,4 +1,3 @@
-
 // 电脑打牌——选择
 var dap_dn=function () {
   var z=sp[zpos][Math.floor(Math.random()*14)];

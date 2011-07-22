@@ -1,7 +1,7 @@
 @charset "utf-8";
 /* CSS Document */
 
-#sp1, #sp2, #sp3, #sp4
+#su1, #su2, #su3, #su4
  {
   border:0 none;
   display:block;
@@ -12,7 +12,7 @@
   margin:0 0 -60px;
 }
 
-#sp1 {
+#su1 {
   -moz-transform:rotate(90deg);
   -o-transform:rotate(90deg);
   -webkit-transform:rotate(90deg);
@@ -22,7 +22,7 @@
   left:-215px;
 }
 
-#sp2 {
+#su2 {
   -moz-transform:rotate(180deg);
   -o-transform:rotate(180deg);
   -webkit-transform:rotate(180deg);
@@ -32,7 +32,7 @@
   left:135px;
 }
 
-#sp3 {
+#su3 {
   -moz-transform:rotate(270deg);
   -o-transform:rotate(270deg);
   -webkit-transform:rotate(270deg);
@@ -42,52 +42,52 @@
   left:485px;
 }
 
-#sp4 {
+#su4 {
   top:460px;
   left:135px;
 }
 
-#sp>.p0>:nth-child(14),
-#sp>.p1>:nth-child(11),
-#sp>.p2>:nth-child( 8),
-#sp>.p3>:nth-child( 5),
-#sp>.p4>:nth-child( 2)
+#su>.p0>:nth-child(14),
+#su>.p1>:nth-child(11),
+#su>.p2>:nth-child( 8),
+#su>.p3>:nth-child( 5),
+#su>.p4>:nth-child( 2)
 {
   margin-left:16px;
 }
 
-#sp>.p1>:nth-child(n+12),
-#sp>.p2>:nth-child(n+9),
-#sp>.p3>:nth-child(n+6),
-#sp>.p4>:nth-child(n+3)
+#su>.p1>:nth-child(n+12),
+#su>.p2>:nth-child(n+9),
+#su>.p3>:nth-child(n+6),
+#su>.p4>:nth-child(n+3)
 {
   margin-left:-8px;
 }
 
-#sp>.p1>:nth-child(3n+12),
-#sp>.p2>:nth-child(3n+9),
-#sp>.p3>:nth-child(3n+6),
-#sp>.p4>:nth-child(3n+3)
+#su>.p1>:nth-child(3n+12),
+#su>.p2>:nth-child(3n+9),
+#su>.p3>:nth-child(3n+6),
+#su>.p4>:nth-child(3n+3)
 {
   margin-left:16px !important;
 }
 
 
-#act.p4~#sp>#sp4.p0>div:hover,
-#act.p4~#sp>#sp4.p1>div:nth-last-child(n+4):hover,
-#act.p4~#sp>#sp4.p2>div:nth-last-child(n+7):hover,
-#act.p4~#sp>#sp4.p3>div:nth-last-child(n+10):hover,
-#act.p4~#sp>#sp4.p4>div:nth-last-child(n+13):hover
+#act.p4~#su>#su4.p0>div:hover,
+#act.p4~#su>#su4.p1>div:nth-last-child(n+4):hover,
+#act.p4~#su>#su4.p2>div:nth-last-child(n+7):hover,
+#act.p4~#su>#su4.p3>div:nth-last-child(n+10):hover,
+#act.p4~#su>#su4.p4>div:nth-last-child(n+13):hover
 {
   background-position:0 0;
   cursor:pointer;
 }
 
-#sp>:not(#sp4):not(.xs).p0>div:not(.z9),
-#sp>:not(#sp4):not(.xs).p1>div:not(.z9):nth-last-child(n+4),
-#sp>:not(#sp4):not(.xs).p2>div:not(.z9):nth-last-child(n+7),
-#sp>:not(#sp4):not(.xs).p3>div:not(.z9):nth-last-child(n+10),
-#sp>:not(#sp4):not(.xs).p4>div:not(.z9):nth-last-child(n+13)
+#su:not(.xs)>:not(#su4):not(.xs).p0>div:not(.z9),
+#su:not(.xs)>:not(#su4):not(.xs).p1>div:not(.z9):nth-last-child(n+4),
+#su:not(.xs)>:not(#su4):not(.xs).p2>div:not(.z9):nth-last-child(n+7),
+#su:not(.xs)>:not(#su4):not(.xs).p3>div:not(.z9):nth-last-child(n+10),
+#su:not(.xs)>:not(#su4):not(.xs).p4>div:not(.z9):nth-last-child(n+13)
 {
   background-image:url("../tp/z/8.png");
 }

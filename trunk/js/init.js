@@ -1,5 +1,7 @@
 // 程序初始化
 var ainit=function () {
+  callfunc(binit);
+  callfunc(ginit)
   callfunc(minit);
 }
 
@@ -21,6 +23,18 @@ var jinit=function () {
     sp[i].init(i+1,pq);
     sp[i].print();
   }
+  clearpc();
+  clearButtons();
   zpos=zhuang.nzhuang+zhuang.dong-3;
   callfunc(zhuap);
+}
+
+// 作弊指令的初始化
+var binit=function () {
+  // 混儿牌显示的那里如果用户Shift-双击则亮出电脑的牌
+  $i("hxsm").ondblclick=function (e) {
+    if (!e.shiftKey) return;
+    var s=$i("su");
+    s.className=(s.className==="xs"?"":"xs");
+  }
 }

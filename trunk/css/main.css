@@ -79,3 +79,12 @@ header>div {
   top:50px;
   margin:0 0 -550px 0;
 }
+
+#act {
+  display:block;
+  margin:0 0 -10px;
+  padding:0;
+  height:10px;
+  font-size:9px;
+  color:#596;
+}

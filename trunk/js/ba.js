@@ -29,7 +29,7 @@ ba.prototype.pz=function () {
 
 // 显示
 ba.prototype.print=function () {
-  var d=$i("sp"+this.pos);
+  var d=$i("su"+this.pos);
   while (d.firstChild) d.removeChild(d.firstChild);
   var i;
   for (i=0;i<this.length;i++) {
