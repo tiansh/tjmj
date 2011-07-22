@@ -60,7 +60,8 @@ var dac=function () {
   $i("dcp").value=ZH_DNXB[(zhuang.dong+3-zpos)%4];
   $i("dcz").className=dapc.divtag().className;
   // 询问碰杠
-  for (i=0;i<4;i++) if (i!=zpos) {
+  if (!dapc.samehuir())
+   for (i=0;i<4;i++) if (i!=zpos) {
     for (c=0,j=0;j<sp[i].pz();j++)
       if (sp[i][j].same(dapc)) c++;
     if (c>=2) {
@@ -72,4 +73,14 @@ var dac=function () {
   }
   // 如果无人能碰杠则下一家抓牌
   callfunc(zhuap);
+}
+
+// 清空牌池
+var clearpc=function () {
+  var i;
+  for (i=0;i<4;i++) {
+    var p=$i("pc"+(i+1));
+    while (p.firstChild)
+      p.removeChild(p.firstChild);
+  }
 }

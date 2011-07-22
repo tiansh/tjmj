@@ -1,15 +1,15 @@
-#act.hup~#xp {
+#act.h2~#xp>#huangp, #act.h2~#xp>#pc {
   display:none;
 }
 
-#act:not(.hup)~#hup {
+#act:not(.h2)~#hup {
   display:none;
 }
 
-#act:not(.huangp)~#xp>#huangp {
+#act:not(.h1)~#xp>#huangp {
   display:none;
 }
 
-#act.huangp~#xp>#xz, #act.huangp~#xp>#pc>#dcm {
+#act.h1~#xp>#pc>#dcm {
   display:none;
 }

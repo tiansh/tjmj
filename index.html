@@ -12,12 +12,13 @@
   <script src="js/ba.js"></script>      <!-- 手牌     -->
   <script src="js/pdhp.js"></script>    <!-- 判断和牌 -->
   <script src="js/fs.js"></script>      <!-- 分数计算 -->
-  <script src="js/init.js"></script>    <!-- 初始化 -->
+  <script src="js/init.js"></script>    <!-- 初始化   -->
   <script src="js/wj.js"></script>      <!-- 玩家打牌 -->
   <script src="js/dn.js"></script>      <!-- 电脑打牌 -->
   <script src="js/pg.js"></script>      <!-- 碰牌杠牌 -->
   <script src="js/hp.js"></script>      <!-- 和牌荒牌 -->
   <script src="js/zd.js"></script>      <!-- 抓牌打牌 -->
+  <script src="js/gz.js"></script>      <!-- 规则设定 -->
   <script src="js/main.js"></script>    <!-- 主程序   -->
   <link rel="stylesheet" href="css/main.css" />   <!-- 主体 -->
   <link rel="stylesheet" href="css/hp.css" />     <!-- 和荒 -->
@@ -29,11 +30,13 @@
   <link rel="stylesheet" href="css/dc.css" />     <!-- 打出 -->
   <link rel="stylesheet" href="css/hup.css" />    <!-- 和牌 -->
   <link rel="stylesheet" href="css/huangp.css" /> <!-- 荒牌 -->
+  <link rel="stylesheet" href="css/gz.css" />     <!-- 规则 -->
 <body>
 <div id="main_body">
+  <div id="act">GNU GPL 3; 0.0; 田生</div>
   <header>
     <div id="gz">
-      <button id="gzsd" style="display:none;">规则设定</button>
+      <button id="gzsd">规则设定</button>
     </div>
     <div id="sy_d">
       剩余<input id="sy" readonly="readonly" tabindex="-1" />张
@@ -47,14 +50,13 @@
       </div>
     </div>
   </header>
-  <div id="act" class="p3"></div>
-  <div id="sp">
-    <div id="sp1"></div>
-    <div id="sp2"></div>
-    <div id="sp3"></div>
-    <div id="sp4"></div>
+  <div id="su">
+    <div id="su1"></div>
+    <div id="su2"></div>
+    <div id="su3"></div>
+    <div id="su4"></div>
   </div>
-  <div id="fs">
+  <div id="df">
     <div id="fs1"><input type="text" readonly="readonly" id="zc1" tabindex="-1" /><input type="text" readonly="readonly" id="scr1" tabindex="-1" /></div>
     <div id="fs2"><input type="text" readonly="readonly" id="zc2" tabindex="-1" /><input type="text" readonly="readonly" id="scr2" tabindex="-1" /></div>
     <div id="fs3"><input type="text" readonly="readonly" id="zc3" tabindex="-1" /><input type="text" readonly="readonly" id="scr3" tabindex="-1" /></div>
@@ -80,6 +82,15 @@
     <div id="hup1"></div>
     <div id="hup2"></div>
     <div id="hupm"><input type="text" readonly="readonly" id="hupms" tabindex="-1" /></div>
+  </div>
+  <div id="sd">
+    <div id="sdf"></div>
+    <div id="sdm">
+      <div id="sdt">规则设定</div>
+      <div><span id="hpzs">混儿牌张数</span><button id="hz1">3张</button><button id="hz2">7张</button><button id="hz3">11张</button></div>
+      <div><span id="qihf"></span><button id="qf1">有小和</button><button id="qf2">无小和</button><button id="qf3">无混儿吊</button></div>
+      <div id="sdb"><button id="sdck">重开</button><button id="sdqx">取消</button></div>
+    </div>
   </div>
 </div>
 </body>

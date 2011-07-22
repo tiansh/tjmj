@@ -1,3 +1,9 @@
+// 起和设定
+var qihuf=2;
+// 小和起和为1
+// 2番起和为2
+// 2番起和无混儿吊为3
+
 
 // 判断和牌的返回值
 var pdhpl=function () {
@@ -258,11 +264,12 @@ ba.prototype.pdhp=function (g) {
     if (zw) s+=ZH_W+ZH_E;
     if (l&&lb) s+=ZH_3+ZH_H+ZH_E;
     if (l) s+=ZH_L;
+    if (s==="") s=ZH_X+ZH_U;
     return s;
   }
   // 判断给定的番种是否够起和番
   var qihu=function (r) {
-    r.ky=r.dx>=2;
+    r.ky=(r.dx>=qihuf)||((qihuf===3)&&(r.g||r.mh));
   }
   // 选择最大的番种
   var xuanze=function (t,last) {

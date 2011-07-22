@@ -1,12 +1,12 @@
 // 玩家打牌——选择
 // 对每张牌注册onclick事件
 var dap_wj_ro=function () {
-  var i, l=sp[3].pz(), p=$i("sp4").childNodes;
+  var i, l=sp[3].pz(), p=$i("su4").childNodes;
   for (i=0;i<l;i++) p[i].onclick=dap_wj_i;
 }
 // 取消onclick事件
 var dap_wj_co=function () {
-  var i, l=sp[3].pz(), p=$i("sp4").childNodes;
+  var i, l=sp[3].pz(), p=$i("su4").childNodes;
   for (i=0;i<l;i++) p[i].onclick=null;
 }
 // 初始化打出牌的界面
@@ -14,7 +14,7 @@ var dap_wj=function () {
   if (chty!==3) {
     // 判断是否能杠牌并在按钮的列表中加入杠牌的按钮
     var i,j,c,s=sp[3],l=Array(3),n=0,b=[];
-    for (i=0;i<14;i++) {
+    for (i=0;i<14;i++) if(!s[i].samehuir()) {
       for (j=i,c=0;j<14;c+=(s[j++].same(s[i]))?1:0);
       if (c===4) l[n++]=new zhang(s[i].lb,s[i].sz);
     }
