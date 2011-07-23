@@ -39,7 +39,7 @@ var zhuagd=function () {
 // 打牌
 var dap=function () {
   // 设置显示样式
-  document.getElementById("act").className="p"+(zpos+1);
+  $i("act").className="p"+(zpos+1);
   // 根据玩家和电脑分类
   if (zpos===3) callfunc(dap_wj);
   else callfunc(dap_dn);
@@ -48,12 +48,13 @@ var dap=function () {
 // 打牌打出
 var dac=function () {
   // 从手牌中去掉这张牌
-  var l=sp[zpos].pz(), i, j, c;
-  for (i=0;i<=l;i++) if (sp[zpos][i].same(dapc)) break;
-  if (i>=l) { callfunc(dap); return; }
-  sp[zpos][i]=new zhang(0,9);
-  sp[zpos].sort();
-  sp[zpos].print();
+  var s, l, i, j, c, f;
+  s=sp[zpos]; l=s.pz();
+  for (i=0;i<l;i++) if (s[i].same(dapc)) break;
+  if (i>=l||dapc.samehuir()) { callfunc(dap); return; }
+  s[i]=new zhang(0,9);
+  s.sort();
+  s.print();
   // 在牌池中显示这张牌
   $i("pc"+(zpos+1)).appendChild(dapc.divtag());
   // 在屏幕中央显示某家打出了这张牌
@@ -62,9 +63,10 @@ var dac=function () {
   // 询问碰杠
   if (!dapc.samehuir())
    for (i=0;i<4;i++) if (i!=zpos) {
-    for (c=0,j=0;j<sp[i].pz();j++)
+    for (c=0,j=0,f=false;j<sp[i].pz()-1;j++)
       if (sp[i][j].same(dapc)) c++;
-    if (c>=2) {
+      else f=f||!sp[i][j].samehuir();
+    if (c>=2&&f||c>=3) {
       ppos=i;
       if (i===3) callfunc(pg_wj);
       else callfunc(pg_dn);
