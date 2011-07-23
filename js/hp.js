@@ -2,6 +2,7 @@
 // 和牌时调用的函数
 var hup=function () {
   var r=sp[zpos].pdhp(chty===2);
+  $i("su"+(zpos+1)).className+=" xs";
   $i("hupwz").value=ZH_DNXB[(zhuang.dong+3-zpos)%4];
   $i("hupms").value=r.mc+"("+r.dx+")";
   var hps=$i("hup1"), spn=$i("su"+(zpos+1));
