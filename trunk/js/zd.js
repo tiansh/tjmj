@@ -43,6 +43,9 @@ var dap=function () {
   // 根据玩家和电脑分类
   if (zpos===3) callfunc(dap_wj);
   else callfunc(dap_dn);
+
+  expp(dapc);
+
 }
 
 // 打牌打出

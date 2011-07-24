@@ -63,32 +63,37 @@ ba.prototype.pdhp=function (g) {
   // 下列分类中，字母对应牌面叙述
   // H表示混儿
   var panduanl=function (a,huir) {
-    var i;
+    var i, f;
     for (i=1;i<=9;i++) if (a[i]) break;
     if (i>9) return true;
     if (a[i]>=3) { // AAA
       a[i]-=3;
-      if (panduanl(a,huir)) return true;
+      f=(panduanl(a,huir));
       a[i]+=3;
+      if (f) return true;
     } else if (a[i]===2 && huir>=1) { // AAH
       a[i]-=2;
-      if (panduanl(a,huir-1)) return true;
+      f=(panduanl(a,huir-1));
       a[i]+=2;
+      if (f) return true;
     }
     if (i<8 && a[i]>=1 && a[i+1]>=1 && a[i+2]>=1) { // ABC
       a[i]--; a[i+1]--; a[i+2]--;
-      if (panduanl(a,huir)) return true;
+      f=(panduanl(a,huir));
       a[i]++; a[i+1]++; a[i+2]++;
+      if (f) return true;
     } else {
       if (i<8 && a[i]>=1 && a[i+2]>=1 && huir>=1) { // AHC
-         a[i]--; a[i+2]--;
-         if (panduanl(a,huir-1)) return true;
-         a[i]++; a[i+2]++;
+        a[i]--; a[i+2]--;
+        f=(panduanl(a,huir-1));
+        a[i]++; a[i+2]++;
+        if (f) return true;
       }
       if (i<9 && a[i]>=1 && a[i+1]>=1 && huir>=1) { // ABH
         a[i]--; a[i+1]--;
-        if (panduanl(a,huir-1)) return true;
+        f=(panduanl(a,huir-1));
         a[i]++; a[i+1]++;
+        if (f) return true;
       }
     }
     if (huir>=2 && a[i]===1 && 
@@ -96,8 +101,9 @@ ba.prototype.pdhp=function (g) {
       (i===8 || a[i+2]===0)
     ) { // AHH
       a[i]--;
-      if (panduanl(a,huir-2)) return true;
+      f=(panduanl(a,huir-2));
       a[i]++;
+      if (f) return true;
     }
     return false;
   }
@@ -126,7 +132,7 @@ ba.prototype.pdhp=function (g) {
   // 判断是否能小和
   var xiaohu=function (t) {
     var a=new tiao; a.copy(t);
-    var i,j;
+    var i,j,f;
     // 枚举做将的牌
     for (i=0;i<4;i++)
      for (j=1;j<=zhang.prototype.zzhang[i];j++)
@@ -134,14 +140,16 @@ ba.prototype.pdhp=function (g) {
        // 用两张这个的牌
        a[i][j]-=2; a[i][0]-=2;
        jiang=new zhang(i,j);
-       if (panduanf(a)) return true;
+       f=panduanf(a);
        a[i][j]+=2; a[i][0]+=2;
+       if (f) return true;
      } else if (a[i][j]===1) {
        // 用一张这个牌和一张混儿
        a[i][j]--; a[i][0]--; a[0][8]--;
        jiang=new zhang(i,j);
-       if (panduanf(a)) return true;
+       f=panduanf(a);
        a[i][j]++; a[i][0]++; a[0][8]++;
+       if (f) return true;
      }
      return false;
   }
@@ -294,7 +302,6 @@ ba.prototype.pdhp=function (g) {
     }
     return r;
   }
-
   return xuanze(t,last);
   
 }

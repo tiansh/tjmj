@@ -22,6 +22,10 @@ var
   st, // 剩余总张数
   nz; // 手牌中n个相同的牌的数量
 
+// 一些估价中用到的常量
+var
+  FCOUNT=200, DCOUNT, GCOUNT=50;
+
 // 电脑选择打牌
 var comchose=function (s) {
   var i,j;
@@ -53,6 +57,7 @@ var comchose=function (s) {
     for (i=0;i<4;i++)
      for (j=1;j<=(i===0?7:9);j++)
       nz[h[i][j]]++;
+    DCOUNT=10/Math.pow(2,nz[2]);
   }
   { // 估价函数们
     inusez(v[0],h[0],a[0]);
@@ -74,36 +79,37 @@ var comchose=function (s) {
   return p;
 }
 
-// 一些估价中用到的常量
-var
-  FCOUNT=200, DCOUNT=100, GCOUNT=50;
 
 // 我在接下来能够抓到某张牌的期望可以简单的认为是
 //   这张牌还有多少张没露出来×还有多少牌可以抓/没露出来的牌的总数/4
 // 然后根据是否可以碰，别人是否有可能有这张牌等因素所适当修正即可
 
+var kz=function (s) {
+  return s/4;
+}
 var gp=function (a) {
-  return 1-Math.pow(1-sx/st/4,a);
+  return 1-Math.pow(1-kz(sx)/st/4,a);
 }
 var gpp=function (a) {
-  return 1-Math.pow(1-sx/st/4/1.2,a);
+  return 1-Math.pow(1-kz(sx)/st/4/1.2,a);
+}
+var uj=function () {
+  var i, r=1, l=arguments.length;
+  for (i=0;i<l;i++) r*=(1-arguments[i]);
+  return 1-r;
 }
 
 // 字牌
 var inusez=function (v,s,a) {
-  var i;
+  var i, u;
   for (i=0;i<7;i++) switch (s[i]) {
     case 1:
-      v[i]=Math.max(
-        FCOUNT*gp(a[i])*gpp(a[i]-1),
-        DCOUNT*gp(a[i])*Math.pow(0.89,nz[2])
-      );
+      u=gp(a[i])*gpp(a[i]-1);
+      v[i]=FCOUNT*u+DCOUNT*(1-u)*gp(a[i]);
       break;
     case 2:
-      v[i]=Math.max(
-        FCOUNT*gpp(a[i]),
-        DCOUNT*Math.pow(0.89,nz[2])
-      );
+      u=gpp(a[i]);
+      v[i]=FCOUNT*u+DCOUNT;
       break;
     case 3:
       v[i]=FCOUNT+gp(a[i])*GCOUNT;
@@ -119,16 +125,6 @@ var inusel=function (v,s,a) {
   var acpy=function (a,b) { for (i=0;i<10;i++) a[i]=b[i]; }
   var l=new Array(10), r=new Array(10), m=Math.max(), i;
   for (i=1;i<10;i++) l[i]=Math.min();
-  var iz=function (p) {
-    var sc;
-    sc=Math.max(
-                   FCOUNT*gp(a[ p ])*gp(a[p]-1),
-      (p<=7      )?FCOUNT*gp(a[p+1])*gp(a[p+2]):0,
-      (p>=3      )?FCOUNT*gp(a[p-1])*gp(a[p-2]):0,
-      (p<=8&&p>=2)?FCOUNT*gp(a[p-1])*gp(a[p+1]):0
-    );
-    return sc;
-  }
   var sv=function (v, t) {
     if (t<m) return;
     m=t;
@@ -138,7 +134,7 @@ var inusel=function (v,s,a) {
     var v_ =new Array(10), s_ =new Array(10);
     var v__=new Array(10), s__=new Array(10);
     var sc1, sc2;
-    var i;
+    var i, u;
     for (i=1;i<10;i++) if (s[i]!==0) break;
     if (i===10) sv(v,t); else {
       // CASE 0
@@ -147,21 +143,32 @@ var inusel=function (v,s,a) {
         // CASE 1-1 A
         acpy(v,v_); acpy(s,s_);
         if (s[i]===1) {
-          sc1=iz(i);
+          u=uj(
+                         gp(a[ i ])*gp(a[i]-1),
+            (i<=7      )?gp(a[i+1])*gp(a[i+2]):0,
+            (i>=3      )?gp(a[i-1])*gp(a[i-2]):0,
+            (i<=8&&i>=2)?gp(a[i-1])*gp(a[i+1]):0
+          );
+          sc1=FCOUNT*u+DCOUNT*(1-u)*gp(a[i]);
           v[i]=Math.min(v[i],sc1);
           s[i]=0;
           inuselr(v,s,t+sc1);
         } else
         // CASE 1-2 AA
         if (s[i]===2) {
-          sc1=FCOUNT*gpp(a[i]);
+          u=uj(
+            (i<=7      )?gp(a[i+1])*gp(a[i+2]):0,
+            (i>=3      )?gp(a[i-1])*gp(a[i-2]):0,
+            (i<=8&&i>=2)?gp(a[i-1])*gp(a[i+1]):0
+          );
+          sc1=FCOUNT*(gpp(a[i])+(1-gpp(a[i]))*u)+DCOUNT;
           v[i]=Math.min(v[i],sc1);
           s[i]=0;
           inuselr(v,s,t+sc1*2);
         } else
         // CASE 1-3 AAA
         if (s[i]===3) {
-          sc1=FCOUNT+gp(a[i])*GCOUNT;
+          sc1=FCOUNT+gp(a[i])*GCOUNT+DCOUNT/2;
           v[i]=Math.min(v[i],sc1);
           s[i]=0;
           inuselr(v,s,t+sc1*3);
@@ -177,7 +184,7 @@ var inusel=function (v,s,a) {
         // CASE 2-1 ABC
         acpy(v,v_); acpy(s,s_);
         if (i<=7) if (s[i+1]>0 && s[i+2]>0) {
-          if (i===1) sc1=FCOUNT;
+          sc1=FCOUNT;
           v[ i ]=Math.min(v[ i ],sc1);
           v[i+1]=Math.min(v[i+1],sc1);
           v[i+2]=Math.min(v[i+2],sc1);
@@ -187,24 +194,28 @@ var inusel=function (v,s,a) {
         // CASE 2-2 AB
         acpy(v,v_); acpy(s,s_);
         if (i<=8) if (s[i+1]>0) {
-          if      (i===1) sc1=FCOUNT*gp(a[i+2]);
-          else if (i===8) sc1=FCOUNT*gp(a[i-1]);
-          else            sc1=FCOUNT*gp(a[i-1]+a[i+2]);
+          if      (i===1) u=gp(a[i+2]);
+          else if (i===8) u=gp(a[i-1]);
+          else            u=gp(a[i-1]+a[i+2]);
+          sc1=(1-u)*gp(a[ i ])*gpp(a[ i ]-1)*FCOUNT+u*FCOUNT;
+          sc2=(1-u)*gp(a[i+1])*gpp(a[i+1]-1)*FCOUNT+u*FCOUNT;
           v[ i ]=Math.min(v[ i ],sc1);
-          v[i+1]=Math.min(v[i+1],sc1);
+          v[i+1]=Math.min(v[i+1],sc2);
           s[i]--; s[i+1]--;
-          inuselr(v,s,t+sc1*2);
+          inuselr(v,s,t+sc1+sc2);
         }
         // CASE 2-3 AC
         acpy(v,v_); acpy(s,s_);
         if (i<=7) if (s[i+2]>0) {
-          sc1=FCOUNT*gp(a[i+1]);
+          u=gp(a[i+1]);
+          sc1=(1-u)*gp(a[ i ])*gpp(a[ i ]-1)*FCOUNT+u*FCOUNT;
+          sc2=(1-u)*gp(a[i+1])*gpp(a[i+1]-1)*FCOUNT+u*FCOUNT;
           v[ i ]=Math.min(v[ i ],sc1);
-          v[i+2]=Math.min(v[i+2],sc1);
+          v[i+2]=Math.min(v[i+2],sc2);
           s[i]--; s[i+2]--;
-          inuselr(v,s,t+sc1*2);
+          inuselr(v,s,t+sc1+sc2);
         }
-      /*
+
       // CASE 1+2
       // CASE (1-2+2-1)
       acpy(v,v_); acpy(s,s_);
@@ -217,38 +228,49 @@ var inusel=function (v,s,a) {
         acpy(v__,v); acpy(s__,s);
         // CASE (1-2+2-1)-1 AABC
         if (s[i]>0 && i<=6) {
-          sc2=Math.max(
-            iz(i),
-            FCOUNT*gp(a[i])*gp(a[i+3])
+          u=uj(
+            gp(a[ i ])*gp(a[i]-1),
+            gp(a[i+1])*gp(a[i+2]),
+            gp(a[i-1])*gp(a[i-2]),
+            gp(a[i-1])*gp(a[i+1]),
+            gp(a[ i ])*gp(a[i+3])
           );
+          sc2=FCOUNT*u+DCOUNT*(1-u)*gp(a[i]);
           v[ i ]=Math.min(v[ i ],sc2);
           inuselr(v,s,t+sc1*3+sc2);
         }
         // CASE (1-2+2-1)-2 ABBC
         acpy(v,v__); acpy(s,s__);
         if (s[i+1]>0 && i>=2 && i<=6) {
-          sc2=Math.max(
-            iz(i),
-            FCOUNT*gp(a[i-1])*gp(a[i+3])
+          u=uj(
+            gp(a[ i ])*gp(a[i]-1),
+            gp(a[i+1])*gp(a[i+2]),
+            gp(a[i-1])*gp(a[i-2]),
+            gp(a[i-1])*gp(a[i+1]),
+            gp(a[i-1])*gp(a[i+3])
           );
+          sc2=FCOUNT*u+DCOUNT*(1-u)*gp(a[i]);
           v[i+1]=Math.min(v[i+1],sc2);
           inuselr(v,s,t+sc1*3+sc2);
         }
         // CASE (1-2+2-1)-3 ABCC
         acpy(v,v__); acpy(s,s__);
         if (s[i+2]>0 && i>=2) {
-          sc2=Math.max(
-            iz(i),
-            FCOUNT*gp(a[i-1])*gp(a[i+2])
+          u=uj(
+            gp(a[ i ])*gp(a[i]-1),
+            gp(a[i+1])*gp(a[i+2]),
+            gp(a[i-1])*gp(a[i-2]),
+            gp(a[i-1])*gp(a[i+1]),
+            gp(a[i-1])*gp(a[i+2])
           );
+          sc2=FCOUNT*u+DCOUNT*(1-u)*gp(a[i]);
           v[i+2]=Math.min(v[i+2],sc2);
           inuselr(v,s,t+sc1*3+sc2);
         }
       }
-      */
       // CASE (1-2)+(2-2)
         // AAB
-        
+      acpy(v,v_); acpy(s,s_);
     }
   }
   inuselr(l,s,0);
