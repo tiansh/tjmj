@@ -20,6 +20,7 @@ var peng=function () {
   s.print();
   zpos=ppos;
   chty=3;
+  expp(dapc);expp(dapc);
   callfunc(dap);
 }
 
@@ -32,7 +33,8 @@ var dmgang=function () {
   s.peng++;
   s.gang[4-s.peng]=true;
   zpos=ppos;
-  fs.df(1,ppos,true)
+  fs.df(1,ppos,true);
+  expp(dapc);expp(dapc);expp(dapc);
   callfunc(zhuagd);
 }
 
@@ -50,7 +52,8 @@ var xmgang=function () {
   var i,s=sp[ppos=zpos];
   for (i=4-s.peng;i<4;i++) if (s[i*3+3].same(dapc)) s.gang[i]=true;
   pg_m(1);
-  fs.df(1,ppos,true)
+  fs.df(1,ppos,true);
+  expp(dapc);
   callfunc(zhuagd);
 }
 // 处理暗杠
@@ -60,7 +63,8 @@ var angang=function () {
   i=++s.peng;
   s.gang[4-i]=true;
   s[14-i*3]=new zhang(0,0);
-  fs.df(2,ppos,true)
+  fs.df(2,ppos,true);
+  expp(dapc);expp(dapc);expp(dapc);expp(dapc);
   callfunc(zhuagd);
 }
 
