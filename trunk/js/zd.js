@@ -43,9 +43,6 @@ var dap=function () {
   // 根据玩家和电脑分类
   if (zpos===3) callfunc(dap_wj);
   else callfunc(dap_dn);
-
-  expp(dapc);
-
 }
 
 // 打牌打出
@@ -60,6 +57,8 @@ var dac=function () {
   s.print();
   // 在牌池中显示这张牌
   $i("pc"+(zpos+1)).appendChild(dapc.divtag());
+  // 告诉电脑有这么一张牌打出去了
+  expp(dapc);
   // 在屏幕中央显示某家打出了这张牌
   $i("dcp").value=ZH_DNXB[(zhuang.dong+3-zpos)%4];
   $i("dcz").className=dapc.divtag().className;

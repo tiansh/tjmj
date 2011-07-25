@@ -34,6 +34,7 @@ var dap_wj=function () {
     if (s.pdhp(chty===2).ky) b[b.length]={n:"和牌",f:hup_wj_i};
     if (b.length>0) setButtons(b);
   }
+  comchose(sp[3]);
   dap_wj_ro();
 }
 // 接收用户小明杠的动作并继续
