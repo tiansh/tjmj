@@ -46,7 +46,7 @@
   left:0;
   background-color:#8C8;
   opacity:0.62;
-  box-shadow:0 0 50px 50px #8C8;
+  box-shadow:0px 0px 50px #8C8;
 }
 
 #sdm {
@@ -59,7 +59,7 @@
   width:400px;
   opacity:1;
   border-radius:0 0 32px 32px;
-  box-shadow:0 0 16px 16px #596;
+  box-shadow:0px 0px 16px #596;
 }
 
 #sdm button {

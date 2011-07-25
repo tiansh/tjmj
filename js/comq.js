@@ -77,13 +77,13 @@ var comchose=function (s) {
       p.lb=s[i].lb; p.sz=s[i].sz;
     }
   }
-  var str="",sss;
-  for (i=0;i<s.pz();i++) {
-   sss="["+s[i].divtag().className+"]"+Math.round(v[s[i].lb][s[i].sz])+", ";
-   if (s[i].same(p)) sss="<font color=red>"+sss+"</font>"
-   str+=sss;
-  }
-  $i("comqtest").innerHTML=str;
+  // var str="",sss;
+  // for (i=0;i<s.pz();i++) {
+   // sss="["+s[i].divtag().className+"]"+Math.round(v[s[i].lb][s[i].sz])+", ";
+   // if (s[i].same(p)) sss="<font color=red>"+sss+"</font>"
+   // str+=sss;
+  // }
+  // $i("comqtest").innerHTML=str;
   return p;
 }
 
@@ -144,13 +144,19 @@ var inusel=function (v,s,a) {
     var sc1, sc2;
     var i, u;
     for (i=1;i<10;i++) if (s[i]!==0) break;
+    // 这里对不同的牌型分类给每张牌估价
+    // 每张牌估价的结果取决于最低分数的一张
+    // 下面分类中，相邻的字母表示相邻序数的牌
     if (i===10) sv(v,t); else {
-      // CASE 0
+      // CASE BEGIN
         acpy(v_,v); acpy(s_,s);
       // CASE 1
+      // 单张重复牌的情况
         // CASE 1-1 A
         acpy(v,v_); acpy(s,s_);
         if (s[i]===1) {
+          // 计算能凑成副的概率为u
+          // 则该张牌的股价分数为对副的分数乘上u
           u=uj(
                          gp(a[ i ])*gp(a[i]-1),
             (i<=7      )?gp(a[i+1])*gp(a[i+2]):0,
@@ -189,6 +195,7 @@ var inusel=function (v,s,a) {
           inuselr(v,s,t+sc1*4);
         }
       // CASE 2
+      // 三张成顺的情况
         // CASE 2-1 ABC
         acpy(v,v_); acpy(s,s_);
         if (i<=7) if (s[i+1]>0 && s[i+2]>0) {
@@ -224,8 +231,9 @@ var inusel=function (v,s,a) {
           inuselr(v,s,t+sc1+sc2);
         }
 
-      // CASE 1+2
-      // CASE (1-2+2-1)
+      // CASE 3=1+2
+      // 上面两种情况的组合
+      // CASE (3-1)=(1-2+2-1)
       acpy(v,v_); acpy(s,s_);
       if (i<=7) if (s[i+1]>0 && s[i+2]>0) {
         sc1=FCOUNT;
@@ -234,7 +242,7 @@ var inusel=function (v,s,a) {
         v[i+2]=Math.min(v[i+2],sc1);
         s[i]--; s[i+1]--; s[i+2]--;
         acpy(v__,v); acpy(s__,s);
-        // CASE (1-2+2-1)-1 AABC
+        // CASE 3-1-1 AABC
         if (s[i]>0 && i<=6) {
           u=uj(
             gp(a[ i ])*gp(a[i]-1),
@@ -247,7 +255,7 @@ var inusel=function (v,s,a) {
           v[ i ]=Math.min(v[ i ],sc2);
           inuselr(v,s,t+sc1*3+sc2);
         }
-        // CASE (1-2+2-1)-2 ABBC
+        // CASE 3-1-2 ABBC
         acpy(v,v__); acpy(s,s__);
         if (s[i+1]>0 && i>=2 && i<=6) {
           u=uj(
@@ -261,7 +269,7 @@ var inusel=function (v,s,a) {
           v[i+1]=Math.min(v[i+1],sc2);
           inuselr(v,s,t+sc1*3+sc2);
         }
-        // CASE (1-2+2-1)-3 ABCC
+        // CASE 3-1-3 ABCC
         acpy(v,v__); acpy(s,s__);
         if (s[i+2]>0 && i>=2) {
           u=uj(
@@ -276,10 +284,190 @@ var inusel=function (v,s,a) {
           inuselr(v,s,t+sc1*3+sc2);
         }
       }
-      // CASE (1-2)+(2-2)
-        // AAB
+      // CASE (3-2)=(1-2)+(2-2)
+        // CASE 3-2-1 AAB
+        acpy(v,v_); acpy(s,s_);
+        if (i<=8) if (s[i]>=2 && s[i+1]>=1) {
+          sc1=FCOUNT*gpp(a[ i ])+DCOUNT;
+          if      (i===1) u=gp(a[i+2]);
+          else if (i===8) u=gp(a[i-1]);
+          else            u=gp(a[i-1]+a[i+2]);
+          sc2=(1-u)*gp(a[i+1])*   gpp(a[i+1]-1) *FCOUNT+
+              (1-u)*gp(a[i+1])*(1-gpp(a[i+1]-1))*DCOUNT+
+              u*FCOUNT;
+          v[ i ]=Math.min(v[ i ],sc1);
+          v[i+1]=Math.min(v[i+1],sc2);
+          s[i]-=2; s[i+1]--;
+          inuselr(v,s,t+sc1+sc2+Math.max(sc1,sc2));
+        }
+        // CASE 3-2-2 ABB
+        acpy(v,v_); acpy(s,s_);
+        if (i<=8) if (s[i+1]>=2) {
+          if      (i===1) u=gp(a[i+2]);
+          else if (i===8) u=gp(a[i-1]);
+          else            u=gp(a[i-1]+a[i+2]);
+          sc1=(1-u)*gp(a[ i ])*   gpp(a[ i ]-1) *FCOUNT+
+              (1-u)*gp(a[ i ])*(1-gpp(a[ i ]-1))*DCOUNT+
+              u*FCOUNT;
+          sc2=FCOUNT*gpp(a[i+1])+DCOUNT;
+          v[ i ]=Math.min(v[ i ],sc1);
+          v[i+1]=Math.min(v[i+1],sc2);
+          s[i]--; s[i+1]-=2;
+          inuselr(v,s,t+sc1+sc2+Math.max(sc1,sc2));
+        }
+        // CASE 3-2-3 AAC
+        acpy(v,v_); acpy(s,s_);
+        if (i<=7) if (s[i]>=2 && s[i+2]>=1) {
+          sc1=FCOUNT*gpp(a[ i ])+DCOUNT;
+          u=gp(a[i+1]);
+          sc2=(1-u)*gp(a[i+2])*   gpp(a[i+2]-1) *FCOUNT+
+              (1-u)*gp(a[i+2])*(1-gpp(a[i+2]-1))*DCOUNT+
+              u*FCOUNT;
+          v[ i ]=Math.min(v[ i ],sc1);
+          v[i+2]=Math.min(v[i+2],sc2);
+          s[i]-=2; s[i+2]--;
+          inuselr(v,s,t+sc1+sc2+Math.max(sc1,sc2));
+        }
+        // CASE 3-2-4 ACC
+        acpy(v,v_); acpy(s,s_);
+        if (i<=7) if (s[i+2]>=2) {
+          u=gp(a[i+1]);
+          sc1=(1-u)*gp(a[ i ])*   gpp(a[ i ]-1) *FCOUNT+
+              (1-u)*gp(a[ i ])*(1-gpp(a[ i ]-1))*DCOUNT+
+              u*FCOUNT;
+          sc2=FCOUNT*gpp(a[i+2])+DCOUNT;
+          v[ i ]=Math.min(v[ i ],sc1);
+          v[i+2]=Math.min(v[i+2],sc2);
+          s[i]--; s[i+2]-=2;
+          inuselr(v,s,t+sc1+sc2+Math.max(sc1,sc2));
+        }
+      // CASE 4 ABCD
+      // 四张相邻序数的牌
+        acpy(v,v_); acpy(s,s_);
+        if (i<=6) if (s[i+1]>0&&s[i+2]>0&&s[i+3]>0) {
+          var sc;
+          u=uj(
+            (i>=3)?gp(a[i-1])*gp(a[i-2]):0,
+            (i>=2)?gp(a[i-1])*gp(a[i+1]):0,
+                   gp(a[i+1])*gp(a[i+2])  ,
+            (i<=5)?gp(a[i+2])*gp(a[i+4]):0,
+            (i<=4)?gp(a[i+4])*gp(a[i+5]):0
+          );
+          sc1=(1-u)*gp(a[ i ])*   gpp(a[ i ]-1) *FCOUNT+
+              (1-u)*gp(a[ i ])*(1-gpp(a[ i ]-1))*DCOUNT+
+              u*FCOUNT;
+          sc2=(1-u)*gp(a[i+3])*   gpp(a[i+3]-1) *FCOUNT+
+              (1-u)*gp(a[i+3])*(1-gpp(a[i+3]-1))*DCOUNT+
+              u*FCOUNT;
+          sc =FCOUNT;
+          v[ i ]=Math.min(v[ i ],sc1);
+          v[i+1]=Math.min(v[i+1],sc );
+          v[i+2]=Math.min(v[i+2],sc );
+          v[i+3]=Math.min(v[i+3],sc2);
+          s[i]--; s[i+1]--; s[i+2]--; s[i+3]--;
+          inuselr(v,s,t+sc*3+Math.max(sc1,sc2));
+        }
+      // CASE 5 ABCDE
+      // 五张相邻序数的牌
+        acpy(v,v_); acpy(s,s_);
+        if (i<=5) if (s[i+1]>0&&s[i+2]>0&&s[i+3]>0&&s[i+4]>0) {
+          var sc3, sc4, sc;
+          u=uj(
+            (i>=2)?gp(a[i-1]):0,
+                   gp(a[i+2])  ,
+            (i<=4)?gp(a[i+5]):0
+          );
+          sc1=(1-u)*gp(a[ i ])*   gpp(a[ i ]-1) *FCOUNT+
+              (1-u)*gp(a[ i ])*(1-gpp(a[ i ]-1))*DCOUNT+
+              u*FCOUNT;
+          sc2=(1-u)*gp(a[i+1])*   gpp(a[i+1]-1) *FCOUNT+
+              (1-u)*gp(a[i+1])*(1-gpp(a[i+1]-1))*DCOUNT+
+              u*FCOUNT;
+          sc3=(1-u)*gp(a[i+2])*   gpp(a[i+2]-1) *FCOUNT+
+              (1-u)*gp(a[i+2])*(1-gpp(a[i+2]-1))*DCOUNT+
+              u*FCOUNT;
+          sc4=(1-u)*gp(a[i+3])*   gpp(a[i+3]-1) *FCOUNT+
+              (1-u)*gp(a[i+3])*(1-gpp(a[i+3]-1))*DCOUNT+
+              u*FCOUNT;
+          sc=FCOUNT;
+          v[ i ]=Math.min(v[ i ],sc1);
+          v[i+1]=Math.min(v[i+1],sc2);
+          v[i+2]=Math.min(v[i+2],sc );
+          v[i+3]=Math.min(v[i+3],sc3);
+          v[i+4]=Math.min(v[i+4],sc4);
+          s[i]--; s[i+1]--; s[i+2]--; s[i+3]--; s[i+4]--;
+          
+          inuselr(v,s,t+sc*3
+            +Math.max(sc1+sc2,sc1+sc3,sc1+sc4,sc2+sc3,sc2+sc4,sc3+sc4)
+          );
+        }
+      // CASE 6 ACE
+        acpy(v,v_); acpy(s,s_);
+        if (i<=5) if (s[i+2]>0&&s[i+4]>0) {
+          var u1, u2, u3, sc3;
+          u1=gp(a[i+1]); u3=gp(a[i+3]); u2=uj(u1,u3);
+          sc1=(1-u1)*gp(a[ i ])*   gpp(a[ i ]-1) *FCOUNT+
+              (1-u1)*gp(a[ i ])*(1-gpp(a[ i ]-1))*DCOUNT+
+              u1*FCOUNT;
+          sc2=(1-u2)*gp(a[i+2])*   gpp(a[i+2]-1) *FCOUNT+
+              (1-u2)*gp(a[i+2])*(1-gpp(a[i+2]-1))*DCOUNT+
+              u2*FCOUNT;
+          sc3=(1-u3)*gp(a[i+4])*   gpp(a[i+4]-1) *FCOUNT+
+              (1-u3)*gp(a[i+4])*(1-gpp(a[i+4]-1))*DCOUNT+
+              u3*FCOUNT;
+          v[ i ]=Math.min(v[ i ],sc1);
+          v[i+2]=Math.min(v[i+2],sc2);
+          v[i+4]=Math.min(v[i+4],sc3);
+          s[i]--; s[i+2]--; s[i+4]--;
+          inuselr(v,s,t+sc1+sc2+sc3);
+        }
+      // CASE 7 124, 689
+      // 边张的情况
+        // CASE 7-1 124
+        acpy(v,v_); acpy(s,s_);
+        if (i===1) if (s[1]>0&&s[2]>0&&s[4]>0) {
+          var sc3, u1, u2, u3;
+          u2=gp(a[3]);
+          sc2=(1-u2)*gp(a[2])*   gpp(a[2]-1) *FCOUNT+
+              (1-u2)*gp(a[2])*(1-gpp(a[2]-1))*DCOUNT+
+              u2*FCOUNT;
+          u1=gp(a[1])*gp(a[1]-1);
+          sc1=FCOUNT*u1+DCOUNT*(1-u1)*gp(a[1]);
+          u3=uj(
+            gp(a[4])*gp(a[4]-1),
+            gp(a[5])*gp(a[6])
+          );
+          sc3=FCOUNT*u3+DCOUNT*(1-u3)*gp(a[4]);
+          v[1]=Math.min(v[1],sc1);
+          v[2]=Math.min(v[2],sc2);
+          v[4]=Math.min(v[4],sc3);
+          s[1]--; s[2]--; s[4]--;
+          inuselr(v,s,t+sc1+sc2+sc3);
+        }
+        // CASE 7-1 689
+        acpy(v,v_); acpy(s,s_);
+        if (i===6) if (s[6]>0&&s[8]>0&&s[9]>0) {
+          var sc3, u1, u2, u3;
+          u2=gp(a[7]);
+          sc2=(1-u2)*gp(a[8])*   gpp(a[8]-1) *FCOUNT+
+              (1-u2)*gp(a[8])*(1-gpp(a[8]-1))*DCOUNT+
+              u2*FCOUNT;
+          u1=gp(a[9])*gp(a[9]-1);
+          sc1=FCOUNT*u1+DCOUNT*(1-u1)*gp(a[9]);
+          u3=uj(
+            gp(a[6])*gp(a[6]-1),
+            gp(a[5])*gp(a[4])
+          );
+          sc3=FCOUNT*u3+DCOUNT*(1-u3)*gp(a[6]);
+          v[9]=Math.min(v[9],sc3);
+          v[8]=Math.min(v[8],sc2);
+          v[6]=Math.min(v[6],sc1);
+          s[9]--; s[8]--; s[6]--;
+          inuselr(v,s,t+sc1+sc2+sc3);
+        }
+      // CASE END
       acpy(v,v_); acpy(s,s_);
-    }
+   }
   }
   inuselr(l,s,0);
   acpy(v,r);
