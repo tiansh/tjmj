@@ -43,7 +43,8 @@ var comchose=function (s) {
         v[i][j]=0;
       }
     }
-    for (i=0;i<s.pz();i++) {
+    for (i=0;i<s.pz();i++)
+     if (!s[i].samehuir()){
       h[s[i].lb][s[i].sz]++;
       a[s[i].lb][s[i].sz]--;
     }
@@ -76,6 +77,13 @@ var comchose=function (s) {
       p.lb=s[i].lb; p.sz=s[i].sz;
     }
   }
+  var str="",sss;
+  for (i=0;i<s.pz();i++) {
+   sss="["+s[i].divtag().className+"]"+Math.round(v[s[i].lb][s[i].sz])+", ";
+   if (s[i].same(p)) sss="<font color=red>"+sss+"</font>"
+   str+=sss;
+  }
+  $i("comqtest").innerHTML=str;
   return p;
 }
 
@@ -91,7 +99,7 @@ var gp=function (a) {
   return 1-Math.pow(1-kz(sx)/st/4,a);
 }
 var gpp=function (a) {
-  return 1-Math.pow(1-kz(sx)/st/4/1.2,a);
+  return 1-Math.pow(1-kz(sx)/st/4*1.2,a);
 }
 var uj=function () {
   var i, r=1, l=arguments.length;
@@ -249,7 +257,7 @@ var inusel=function (v,s,a) {
             gp(a[i-1])*gp(a[i+1]),
             gp(a[i-1])*gp(a[i+3])
           );
-          sc2=FCOUNT*u+DCOUNT*(1-u)*gp(a[i]);
+          sc2=FCOUNT*u+DCOUNT*(1-u)*gp(a[i+1]);
           v[i+1]=Math.min(v[i+1],sc2);
           inuselr(v,s,t+sc1*3+sc2);
         }
@@ -263,7 +271,7 @@ var inusel=function (v,s,a) {
             gp(a[i-1])*gp(a[i+1]),
             gp(a[i-1])*gp(a[i+2])
           );
-          sc2=FCOUNT*u+DCOUNT*(1-u)*gp(a[i]);
+          sc2=FCOUNT*u+DCOUNT*(1-u)*gp(a[i+2]);
           v[i+2]=Math.min(v[i+2],sc2);
           inuselr(v,s,t+sc1*3+sc2);
         }

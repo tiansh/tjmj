@@ -9,7 +9,6 @@ var ainit=function () {
 var minit=function () {
   zhuang.init();
   fs.init();
-  cqinit();
   setTimeout(jinit,0);
 }
 
@@ -17,6 +16,7 @@ var minit=function () {
 var jinit=function () {
   zhuang.print();
   fs.print();
+  cqinit();
   pq.init();
   pq.dhuir().sethuir();
   var i;
