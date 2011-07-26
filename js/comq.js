@@ -260,8 +260,6 @@ var inusez=function (v,s,a) {
   return m;
 };
 
-var count_inusel_debug=0;
-
 // 序数牌
 var inusel=function (v,s,a,w) {
   var acpy=function (a,b) { for (i=0;i<10;i++) a[i]=b[i]; }
@@ -273,7 +271,6 @@ var inusel=function (v,s,a,w) {
     acpy(r,v);
   }
   var inuselr=function (v,s,t) {
-    $i("act").innerHTML=++count_inusel_debug;
     var v_ =new Array(10), s_ =new Array(10);
     var v__=new Array(10), s__=new Array(10);
     var sc1, sc2;
