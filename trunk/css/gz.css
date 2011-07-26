@@ -45,8 +45,16 @@
   margin:0 0 -600px;
   left:0;
   background-color:#8C8;
+  -moz-opacity:0.62;
+  -webkit-opacity:0.62;
+  -ms-opacity:0.62;
+  -o-opacity:0.62;
   opacity:0.62;
-  box-shadow:0px 0px 50px #8C8;
+  -moz-box-shadow:0 0 50px 50px #8C8;
+  -webkit-box-shadow:0 0 50px 50px #8C8;
+  -o-box-shadow:0 0 50px 50px #8C8;
+  -ms-box-shadow:0 0 50px 50px #8C8;
+  box-shadow:0 0 50px 50px #8C8;
 }
 
 #sdm {
@@ -57,9 +65,21 @@
   color:#FFF;
   background-color:#596;
   width:400px;
+  -moz-opacity:1;
+  -webkit-opacity:1;
+  -o-opacity:1;
+  -ms-opacity:1;
   opacity:1;
+  -moz-border-radius:0 0 32px 32px;
+  -webkit-border-radius:0 0 32px 32px;
+  -o-border-radius:0 0 32px 32px;
+  -ms-border-radius:0 0 32px 32px;
   border-radius:0 0 32px 32px;
-  box-shadow:0px 0px 16px #596;
+  -moz-box-shadow:0 0 16px 16px #596;
+  -webkit-box-shadow:0 0 16px 16px #596;
+  -o-box-shadow:0 0 16px 16px #596;
+  -ms-box-shadow:0 0 16px 16px #596;
+  box-shadow:0 0 16px 16px #596;
 }
 
 #sdm button {

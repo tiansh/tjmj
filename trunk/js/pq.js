@@ -1,3 +1,20 @@
+/*
+    This file is part of Tianjin Mahjong.
+
+    Tianjin Mahjong is free software: you can redistribute it and/or
+    modify it under the terms of the GNU General Public License as
+    published by the Free Software Foundation, either version 3 of the
+    License, or (at your option) any later version.
+
+    Foobar is distributed in the hope that it will be useful,
+    but WITHOUT ANY WARRANTY; without even the implied warranty of
+    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+    GNU General Public License for more details.
+
+    You should have received a copy of the GNU General Public License
+    along with Foobar.  If not, see <http://www.gnu.org/licenses/>.
+*/
+
 // 牌墙的代码
 var tppq=function () {
   var a = new Array(136);
@@ -19,7 +36,11 @@ tppq.prototype=Array.prototype;
 tppq.prototype.rp=function () {
   var i;
   for (i=0;i<10;i++)
-    this.sort(function(){return Math.random()-0.5;});
+    this.sort(
+      function () {
+        return Math.random()-0.5;
+      }
+    );
 }
 
 // 初始化
@@ -71,7 +92,9 @@ tppq.prototype.getlp=function () {
 
 // 显示剩余张数
 tppq.prototype.printnum=function () {
-  $i("sy").value=this.num();
+  var d=$i("sy"), n=this.num();
+  d.value=n;
+  d.className=n<20?"l20":"";
 }
 
 var pq=new tppq;
