@@ -1,6 +1,6 @@
 body, input, button, #main_body {
   font-size:18px;
-  font-family:Microsoft YaHei,arial,tahoma,sans-serif,verdana;
+  font-family:Microsoft YaHei, 微软雅黑, Heiti SC, 黑体, helvetica neue, lucida grande, helvetica, arial;
   border:0 none;
   margin:0;
   padding:0;
@@ -82,6 +82,7 @@ header>div {
   margin:0 0 -10px;
   padding:0;
   height:10px;
+  width:800px;
   font-size:9px;
   color:#596;
 }
