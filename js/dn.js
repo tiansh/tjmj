@@ -6,20 +6,25 @@
     published by the Free Software Foundation, either version 3 of the
     License, or (at your option) any later version.
 
-    Foobar is distributed in the hope that it will be useful,
+    Tianjin Mahjong is distributed in the hope that it will be useful,
     but WITHOUT ANY WARRANTY; without even the implied warranty of
     MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
     GNU General Public License for more details.
 
     You should have received a copy of the GNU General Public License
-    along with Foobar.  If not, see <http://www.gnu.org/licenses/>.
+    along with Tianjin Mahjong. If not, see <http://www.gnu.org/licenses/>.
 */
+
+// 控制电脑打牌速度
+var timer_dn, timeout_dn=100;
 
 // 电脑打牌——选择
 var dap_dn=function () {
+  setTimeout(function(){timer_dn=true},timeout_dn);
+  timer_dn=false;
   var s=sp[zpos];
   if (s.pdhp(chty===2).ky) {
-    callfunc(hup);
+    callfunc(hup_dn);
   } else {
     // 判断暗杠和小明杠
     var i,j,c;
@@ -27,13 +32,13 @@ var dap_dn=function () {
       for (j=i,c=0;j<14;c+=(s[j++].same(s[i]))?1:0);
       if (c===4) if (dnag(s,s[i])) {
         dapc=new zhang(s[i].lb,s[i].sz);
-        callfunc(xm_agang);
+        callfunc(xm_agang_dn);
         return;
       }
     }
     var d=comchose(s);
     dapc=new zhang(d.lb,d.sz);
-    callfunc(dac); 
+    callfunc(dac_dn); 
   }
 }
 
@@ -48,3 +53,17 @@ var pg_dn=function () {
   else if (h==="p") callfunc(peng);
   else callfunc(pgqx);
 }
+
+hup_dn=function () {
+  if (timer_dn) callfunc(hup);
+  else setTimeout(hup_dn,10);
+}
+xm_agang_dn=function () {
+  if (timer_dn) callfunc(xm_agang);
+  else setTimeout(xm_agang_dn,10);
+}
+dac_dn=function () {
+  if (timer_dn) callfunc(dac);
+  else setTimeout(dac_dn,10);
+}
+

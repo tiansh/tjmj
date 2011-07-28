@@ -6,13 +6,13 @@
     published by the Free Software Foundation, either version 3 of the
     License, or (at your option) any later version.
 
-    Foobar is distributed in the hope that it will be useful,
+    Tianjin Mahjong is distributed in the hope that it will be useful,
     but WITHOUT ANY WARRANTY; without even the implied warranty of
     MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
     GNU General Public License for more details.
 
     You should have received a copy of the GNU General Public License
-    along with Foobar.  If not, see <http://www.gnu.org/licenses/>.
+    along with Tianjin Mahjong. If not, see <http://www.gnu.org/licenses/>.
 */
 
 // 手牌
@@ -36,7 +36,7 @@ ba.prototype.init=function (pos, a) {
   // 是不是杠gang[3]表示最右面（最先）一副
   this.gang=[false, false, false, false];
   // 理牌
-  this.sort();
+  if (pos!==4||autosort) this.sort();
 }
 ba.prototype.length=14;
 // 除去碰杠外剩余的张数
@@ -58,7 +58,8 @@ ba.prototype.print=function () {
 // 理牌
 ba.prototype.sort=function () {
   // 比较牌张大小
-  var zhangcmp=function (a,b) {
+  var zhangcmp
+  zhangcmp=function (a,b) {
     var as=a.lb===0&&a.sz===9;
     var bs=b.lb===0&&b.sz===9;
     if (as&&!bs) return 1000;
@@ -66,11 +67,11 @@ ba.prototype.sort=function () {
     var ah=a.samehuir(), bh=b.samehuir();
     if (ah!==bh) return ah?-100:100;
     return -10*(a.lb-b.lb)+(a.sz-b.sz);
-  };
+  }
   // 只对没有碰的牌进行排序
   var t=this.pz();
   var i, j;
-  for (i=0;i<t-1;i++) for (j=i+1;j<t;j++)
+  for (i=0;i<t-2;i++) for (j=i+1;j<t;j++)
     if (zhangcmp(this[i],this[j])>0) {
       var temp=this[i]; this[i]=this[j]; this[j]=temp;
     }

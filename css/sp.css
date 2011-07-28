@@ -70,11 +70,11 @@
 }
 
 
-#act.p4~#su>#su4.p0>div:hover,
-#act.p4~#su>#su4.p1>div:nth-last-child(n+4):hover,
-#act.p4~#su>#su4.p2>div:nth-last-child(n+7):hover,
-#act.p4~#su>#su4.p3>div:nth-last-child(n+10):hover,
-#act.p4~#su>#su4.p4>div:nth-last-child(n+13):hover
+#act.p4:not(.mv)~#su>#su4.p0>div:hover,
+#act.p4:not(.mv)~#su>#su4.p1>div:nth-last-child(n+4):hover,
+#act.p4:not(.mv)~#su>#su4.p2>div:nth-last-child(n+7):hover,
+#act.p4:not(.mv)~#su>#su4.p3>div:nth-last-child(n+10):hover,
+#act.p4:not(.mv)~#su>#su4.p4>div:nth-last-child(n+13):hover
 {
   background-position:0 0;
   cursor:pointer;

@@ -6,15 +6,14 @@
     published by the Free Software Foundation, either version 3 of the
     License, or (at your option) any later version.
 
-    Foobar is distributed in the hope that it will be useful,
+    Tianjin Mahjong is distributed in the hope that it will be useful,
     but WITHOUT ANY WARRANTY; without even the implied warranty of
     MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
     GNU General Public License for more details.
 
     You should have received a copy of the GNU General Public License
-    along with Foobar.  If not, see <http://www.gnu.org/licenses/>.
+    along with Tianjin Mahjong. If not, see <http://www.gnu.org/licenses/>.
 */
-
 
 // 抓牌
 var zhuap=function () {
@@ -25,7 +24,7 @@ var zhuap=function () {
     return;
   }
   // 抓一张牌
-  zpos=++zpos%4;
+  zpos=(zpos+3)%4;
   sp[zpos][sp[zpos].pz()-1]=z;
   sp[zpos].print();
   // 设置当前状态为正常
@@ -69,8 +68,8 @@ var dac=function () {
   s=sp[zpos]; l=s.pz();
   for (i=0;i<l;i++) if (s[i].same(dapc)) break;
   if (i>=l||dapc.samehuir()) { callfunc(dap); return; }
-  s[i]=new zhang(0,9);
-  s.sort();
+  for (;i<l-1;i++) s[i]=s[i+1]; s[l-1]=new zhang(0,9);
+  if (zpos!==3||autosort) s.sort();
   s.print();
   // 在牌池中显示这张牌
   $i("pc"+(zpos+1)).appendChild(dapc.divtag());

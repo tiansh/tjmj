@@ -13,7 +13,9 @@
   background-repeat:no-repeat;
   background-origin:content-box;
   background-position:0 10px;
-} 
+}
+
+
 .w1 { background-image:url("../tp/w/1.png"); }
 .w2 { background-image:url("../tp/w/2.png"); }
 .w3 { background-image:url("../tp/w/3.png"); }
@@ -51,3 +53,43 @@
 .z7 { background-image:url("../tp/z/7.png"); }
 .z8 { background-image:url("../tp/z/8.png"); }
 .z9 { background-image:url("../tp/z/9.png"); }
+
+#hxsp { display:none; }
+
+#hxsp.w1~* .w1 { background-image:url("../tp/h.png"), url("../tp/w/1.png"); }
+#hxsp.w2~* .w2 { background-image:url("../tp/h.png"), url("../tp/w/2.png"); }
+#hxsp.w3~* .w3 { background-image:url("../tp/h.png"), url("../tp/w/3.png"); }
+#hxsp.w4~* .w4 { background-image:url("../tp/h.png"), url("../tp/w/4.png"); }
+#hxsp.w5~* .w5 { background-image:url("../tp/h.png"), url("../tp/w/5.png"); }
+#hxsp.w6~* .w6 { background-image:url("../tp/h.png"), url("../tp/w/6.png"); }
+#hxsp.w7~* .w7 { background-image:url("../tp/h.png"), url("../tp/w/7.png"); }
+#hxsp.w8~* .w8 { background-image:url("../tp/h.png"), url("../tp/w/8.png"); }
+#hxsp.w9~* .w9 { background-image:url("../tp/h.png"), url("../tp/w/9.png"); }
+#hxsp.b1~* .b1 { background-image:url("../tp/h.png"), url("../tp/b/1.png"); }
+#hxsp.b2~* .b2 { background-image:url("../tp/h.png"), url("../tp/b/2.png"); }
+#hxsp.b3~* .b3 { background-image:url("../tp/h.png"), url("../tp/b/3.png"); }
+#hxsp.b4~* .b4 { background-image:url("../tp/h.png"), url("../tp/b/4.png"); }
+#hxsp.b5~* .b5 { background-image:url("../tp/h.png"), url("../tp/b/5.png"); }
+#hxsp.b6~* .b6 { background-image:url("../tp/h.png"), url("../tp/b/6.png"); }
+#hxsp.b7~* .b7 { background-image:url("../tp/h.png"), url("../tp/b/7.png"); }
+#hxsp.b8~* .b8 { background-image:url("../tp/h.png"), url("../tp/b/8.png"); }
+#hxsp.b9~* .b9 { background-image:url("../tp/h.png"), url("../tp/b/9.png"); }
+#hxsp.t1~* .t1 { background-image:url("../tp/h.png"), url("../tp/t/1.png"); }
+#hxsp.t2~* .t2 { background-image:url("../tp/h.png"), url("../tp/t/2.png"); }
+#hxsp.t3~* .t3 { background-image:url("../tp/h.png"), url("../tp/t/3.png"); }
+#hxsp.t4~* .t4 { background-image:url("../tp/h.png"), url("../tp/t/4.png"); }
+#hxsp.t5~* .t5 { background-image:url("../tp/h.png"), url("../tp/t/5.png"); }
+#hxsp.t6~* .t6 { background-image:url("../tp/h.png"), url("../tp/t/6.png"); }
+#hxsp.t7~* .t7 { background-image:url("../tp/h.png"), url("../tp/t/7.png"); }
+#hxsp.t8~* .t8 { background-image:url("../tp/h.png"), url("../tp/t/8.png"); }
+#hxsp.t9~* .t9 { background-image:url("../tp/h.png"), url("../tp/t/9.png"); }
+#hxsp.z0~* .z0 { background-image:url("../tp/h.png"), url("../tp/z/0.png"); }
+#hxsp.z1~* .z1 { background-image:url("../tp/h.png"), url("../tp/z/1.png"); }
+#hxsp.z2~* .z2 { background-image:url("../tp/h.png"), url("../tp/z/2.png"); }
+#hxsp.z3~* .z3 { background-image:url("../tp/h.png"), url("../tp/z/3.png"); }
+#hxsp.z4~* .z4 { background-image:url("../tp/h.png"), url("../tp/z/4.png"); }
+#hxsp.z5~* .z5 { background-image:url("../tp/h.png"), url("../tp/z/5.png"); }
+#hxsp.z6~* .z6 { background-image:url("../tp/h.png"), url("../tp/z/6.png"); }
+#hxsp.z7~* .z7 { background-image:url("../tp/h.png"), url("../tp/z/7.png"); }
+#hxsp.z8~* .z8 { background-image:url("../tp/h.png"), url("../tp/z/8.png"); }
+#hxsp.z9~* .z9 { background-image:url("../tp/h.png"), url("../tp/z/9.png"); }

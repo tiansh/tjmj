@@ -1,6 +1,7 @@
+<!doctype html>
 <!--
-    天津麻将
-    Copyright (C) 2011 田生
+    Tianjin Mahjong
+    Copyright (C) 2011 TIAN Sheng
 
     This program is free software: you can redistribute it and/or modify
     it under the terms of the GNU General Public License as published by
@@ -15,15 +16,15 @@
     You should have received a copy of the GNU General Public License
     along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
-----
+- - - -
 
     All mahjong tiles were drawn by Jerry Crimson Mann From Wikipedia.
 
 -->
-<!doctype html>
 <html>
 <head>
   <meta http-equiv="content-type" content="text/html; charset=UTF-8" />
+  <link rel="shortcut icon" href="mahjong.ico" type="image/x-icon" />
   <title>天津麻将</title>
   <script src="js/zhang.js"></script>   <!-- 牌张     -->
   <script src="js/var.js"></script>     <!-- 变量定义 -->
@@ -31,8 +32,10 @@
   <script src="js/buttons.js"></script> <!-- 绘制按钮 -->
   <script src="js/zhuang.js"></script>  <!-- 庄       -->
   <script src="js/pq.js"></script>      <!-- 牌墙     -->
+  <script src="js/px.js"></script>      <!-- 手牌理牌 -->
   <script src="js/ba.js"></script>      <!-- 手牌     -->
   <script src="js/pdhp.js"></script>    <!-- 判断和牌 -->
+  <script src="js/hpxs.js"></script>    <!-- 和牌显示 -->
   <script src="js/fs.js"></script>      <!-- 分数计算 -->
   <script src="js/init.js"></script>    <!-- 初始化   -->
   <script src="js/wj.js"></script>      <!-- 玩家打牌 -->
@@ -53,9 +56,11 @@
   <link rel="stylesheet" href="css/hup.css" />    <!-- 和牌 -->
   <link rel="stylesheet" href="css/huangp.css" /> <!-- 荒牌 -->
   <link rel="stylesheet" href="css/gz.css" />     <!-- 规则 -->
+  <link rel="stylesheet" href="css/lp.css" />     <!-- 理牌 -->
 <body>
 <div id="main_body">
-  <div id="act">GNU GPL 3(+); 版本 0.1; 田生</div>
+  <div id="act"><a href="http://www.gnu.org/licenses/" rel="nofollow">GNU GPL 3</a>; 版本 0.1; 田生</div>
+  <div id="hxsp"></div>
   <header>
     <div id="gz">
       <button id="gzsd">规则设定</button>
@@ -87,6 +92,7 @@
   <div id="xp">
     <div id="xz">
       <div id="xzm"></div>
+      <button id="lp">自动理牌</button>
     </div>
     <div id="huangp">
       荒牌

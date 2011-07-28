@@ -6,13 +6,13 @@
     published by the Free Software Foundation, either version 3 of the
     License, or (at your option) any later version.
 
-    Foobar is distributed in the hope that it will be useful,
+    Tianjin Mahjong is distributed in the hope that it will be useful,
     but WITHOUT ANY WARRANTY; without even the implied warranty of
     MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
     GNU General Public License for more details.
 
     You should have received a copy of the GNU General Public License
-    along with Foobar.  If not, see <http://www.gnu.org/licenses/>.
+    along with Tianjin Mahjong. If not, see <http://www.gnu.org/licenses/>.
 */
 
 // 玩家打牌——选择
@@ -28,7 +28,7 @@ var dap_wj_co=function () {
 }
 // 初始化打出牌的界面
 var dap_wj=function () {
-  
+  movelast=true;
   if (chty!==3) {
     // 判断是否能杠牌并在按钮的列表中加入杠牌的按钮
     var i,j,c,s=sp[3],l=Array(3),n=0,b=[];
@@ -54,17 +54,21 @@ var dap_wj=function () {
         v:l[i].divtag().className
       }
     // 判断是否能和牌  
-    if (s.pdhp(chty===2).ky)
-     b[b.length]={n:"和牌",f:hup_wj_i};
+    if (s.pdhp(chty===2).ky) {
+      b[b.length]={n:"和牌",f:hup_wj_i};
+      movelast=false;
+    }
     if (b.length>0) setButtons(b);
   }
   comchose(sp[3]);
   dap_wj_ro();
+  pmove_ro();
 }
 // 接收用户暗杠和小明杠的动作并继续
 var xm_ag_wj_i=function () {
   clearButtons();
   dap_wj_co();
+  pmove_co();
   dapc.dcdt(this.value);
   callfunc(xm_agang);
 }
@@ -72,6 +76,7 @@ var xm_ag_wj_i=function () {
 var dap_wj_i=function () {
   clearButtons();
   dap_wj_co();
+  pmove_co();
   dapc.dcdt(this.className);
   callfunc(dac);
 }
@@ -79,6 +84,7 @@ var dap_wj_i=function () {
 var hup_wj_i=function () {
   clearButtons();
   dap_wj_co();
+  pmove_co();
   callfunc(hup);
 }
 // 接收用户碰牌的动作并继续

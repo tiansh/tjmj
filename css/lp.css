@@ -1,0 +1,22 @@
+#lp {
+  display:block;
+  left:80px;
+  position:relative;
+  top:425px;
+  width:80px;
+  height:24px;
+  margin:0 0 -32px;
+  text-align:left;
+}
+
+#lp.d {
+  color:#CCC;
+}
+
+#lp:hover {
+  cursor:pointer;
+}
+
+#act.mv~*, #act.mv~*:hover, #act.mv~* *:hover {
+  cursor:move !important;
+}
