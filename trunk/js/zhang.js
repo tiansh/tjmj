@@ -6,13 +6,13 @@
     published by the Free Software Foundation, either version 3 of the
     License, or (at your option) any later version.
 
-    Foobar is distributed in the hope that it will be useful,
+    Tianjin Mahjong is distributed in the hope that it will be useful,
     but WITHOUT ANY WARRANTY; without even the implied warranty of
     MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
     GNU General Public License for more details.
 
     You should have received a copy of the GNU General Public License
-    along with Foobar.  If not, see <http://www.gnu.org/licenses/>.
+    along with Tianjin Mahjong. If not, see <http://www.gnu.org/licenses/>.
 */
 
 // 牌张的代码
@@ -54,10 +54,13 @@ zhang.prototype.sethuir=function () {
   }
   
   // 显示
-  var d=$i("hxsm");
+  var d=$i("hxsm"), h=$i("hxsp"), t;
   while (d.firstChild) d.removeChild(d.firstChild);
-  for (var i=0;i<zhang.prototype.numhuir;i++)
-    d.appendChild(zhang.prototype.huir[i].divtag());
+  for (var i=0;i<zhang.prototype.numhuir;i++) {
+    t=zhang.prototype.huir[i].divtag();
+    d.appendChild(t);
+    h.className=(i>0?(h.className+" "):"")+t.className;
+  }
 }
 
 // 判断两张牌是否相同

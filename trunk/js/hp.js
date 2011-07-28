@@ -6,25 +6,25 @@
     published by the Free Software Foundation, either version 3 of the
     License, or (at your option) any later version.
 
-    Foobar is distributed in the hope that it will be useful,
+    Tianjin Mahjong is distributed in the hope that it will be useful,
     but WITHOUT ANY WARRANTY; without even the implied warranty of
     MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
     GNU General Public License for more details.
 
     You should have received a copy of the GNU General Public License
-    along with Foobar.  If not, see <http://www.gnu.org/licenses/>.
+    along with Tianjin Mahjong. If not, see <http://www.gnu.org/licenses/>.
 */
-
 
 // 和牌时调用的函数
 var hup=function () {
-  var r=sp[zpos].pdhp(chty===2);
+  var s=sp[zpos], r=s.pdhp(chty===2);
   $i("su"+(zpos+1)).className+=" xs";
   $i("hupwz").value=ZH_DNXB[(zhuang.dong+3-zpos)%4];
   $i("hupms").value=r.mc+"("+r.dx+")";
-  var hps=$i("hup1"), spn=$i("su"+(zpos+1));
-  hps.innerHTML=spn.innerHTML;
-  hps.className=spn.className;
+  var hps=$i("hup1"), hps2=$i("hup2"), spn=$i("su"+(zpos+1));
+  hps.innerHTML=spn.innerHTML;  hps.className=spn.className;
+  hps2.innerHTML=spn.innerHTML; hps2.className=spn.className;
+  hpxs(r,s);
   $i("act").className="h2";
   fs.df(r.dx,zpos,false);
   if ((zhuang.dong+3-zpos)%4!==(zhuang.nzhuang-1)%4)

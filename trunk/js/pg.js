@@ -6,13 +6,13 @@
     published by the Free Software Foundation, either version 3 of the
     License, or (at your option) any later version.
 
-    Foobar is distributed in the hope that it will be useful,
+    Tianjin Mahjong is distributed in the hope that it will be useful,
     but WITHOUT ANY WARRANTY; without even the implied warranty of
     MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
     GNU General Public License for more details.
 
     You should have received a copy of the GNU General Public License
-    along with Foobar.  If not, see <http://www.gnu.org/licenses/>.
+    along with Tianjin Mahjong. If not, see <http://www.gnu.org/licenses/>.
 */
 
 // 碰杠时把手牌中对应的牌张移动到末尾
@@ -58,6 +58,7 @@ var dmgang=function () {
 // 处理小明杠&暗杠
 var xm_agang=function () {
   var i,s=sp[zpos],l=s.pz(),c=0;
+  if (zpos!==3||autosort) s.sort();
   for (i=0;i<l;i++) if (s[i].same(dapc)) c++;
   if (c===4) callfunc(angang);
   else callfunc(xmgang);

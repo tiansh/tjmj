@@ -6,13 +6,13 @@
     published by the Free Software Foundation, either version 3 of the
     License, or (at your option) any later version.
 
-    Foobar is distributed in the hope that it will be useful,
+    Tianjin Mahjong is distributed in the hope that it will be useful,
     but WITHOUT ANY WARRANTY; without even the implied warranty of
     MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
     GNU General Public License for more details.
 
     You should have received a copy of the GNU General Public License
-    along with Foobar.  If not, see <http://www.gnu.org/licenses/>.
+    along with Tianjin Mahjong. If not, see <http://www.gnu.org/licenses/>.
 */
 
 // 起和设定
@@ -34,6 +34,7 @@ var pdhpl=function () {
   this.dx=0;
   this.j =new zhang(0,0);
   this.numwbt=[0,0,0,0];
+  this.last=new zhang(0,0);
 }
 
 // 判断和牌
@@ -308,11 +309,12 @@ ba.prototype.pdhp=function (g) {
       if (e.ky) {
         var n=daxiao(mh,hd,zw,l,e.lb,g);
         if (n>r.dx) {
-          r.dx=n;
+          r.dx=n; r.last=last;
           r.mh=mh; r.hd=e.sh; r.zw=zw; r.l=e.ll; r.g=g;
           r.mc=mingming(mh,e.sh,zw,l,e.lb,g);
           qihu(r);
-          r.j=new zhang(jiang.lb, jiang.sz);
+          if (r.hd===1) r.j=new zhang(last.lb, last.sz);
+          else r.j=new zhang(jiang.lb, jiang.sz);
           r.numwbt=[numwbt[0], numwbt[1], numwbt[2], numwbt[3]];
         }
       }

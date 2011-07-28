@@ -6,13 +6,13 @@
     published by the Free Software Foundation, either version 3 of the
     License, or (at your option) any later version.
 
-    Foobar is distributed in the hope that it will be useful,
+    Tianjin Mahjong is distributed in the hope that it will be useful,
     but WITHOUT ANY WARRANTY; without even the implied warranty of
     MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
     GNU General Public License for more details.
 
     You should have received a copy of the GNU General Public License
-    along with Foobar.  If not, see <http://www.gnu.org/licenses/>.
+    along with Tianjin Mahjong. If not, see <http://www.gnu.org/licenses/>.
 */
 
 // 牌墙的代码
@@ -34,13 +34,15 @@ tppq.prototype=Array.prototype;
 
 // 洗牌
 tppq.prototype.rp=function () {
-  var i;
+  var i, j;
+  var swap=function (a, b) {
+    var lb=a.lb, sz=a.sz;
+    a.lb=b.lb; b.lb=lb;
+    a.sz=b.sz; b.sz=sz;
+  }
   for (i=0;i<10;i++)
-    this.sort(
-      function () {
-        return Math.random()-0.5;
-      }
-    );
+   for (j=0;j<136;j++)
+   swap(this[j],this[Math.floor(Math.random()*(136-j))+j]);
 }
 
 // 初始化
