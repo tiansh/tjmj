@@ -20,6 +20,8 @@ var hpxs=function (r,s) {
   var huirlist=new Array(14);
   var hulist=new Array(14), hp=s.pz();
   var ht=new Array(4);
+  var last=new zhang(r.last.lb,r.last.sz);
+  if (last.samehuir()) last=new zhang(0,8);
   for (i=0;i<4;i++) {
     ht[i]=new Array(10);
     for (j=0;j<10;j++)
@@ -41,9 +43,9 @@ var hpxs=function (r,s) {
       hulist[--hp]=new zhang(0,8);
     }
   } else {
-    hulist[--hp]=new zhang(r.last.lb,r.last.sz);
+    hulist[--hp]=new zhang(last.lb,last.sz);
     hulist[--hp]=new zhang(0,8);
-    ht[r.last.lb][r.last.sz]--;
+    ht[last.lb][last.sz]--;
     ht[0][8]--;
   }
   
@@ -51,20 +53,20 @@ var hpxs=function (r,s) {
     if (r.zw) {
       // 双混儿伍儿
       hulist[--hp]=new zhang(0,8);
-      hulist[--hp]=new zhang(r.last.lb,r.last.sz);
+      hulist[--hp]=new zhang(last.lb,last.sz);
     } else {
       // 双混儿吊
-      hulist[--hp]=new zhang(r.last.lb,r.last.sz);
+      hulist[--hp]=new zhang(last.lb,last.sz);
       hulist[--hp]=new zhang(0,8);
     }
     hulist[--hp]=new zhang(0,8);
-    ht[r.last.lb][r.last.sz]--;
+    ht[last.lb][last.sz]--;
     ht[0][8]-=2;
   } else if (r.zw) {
     // 捉伍儿
     var rm;
     for (i=6;i>=4;i--) {
-      if (i===5) rm=new zhang(r.last.lb,r.last.sz);
+      if (i===5) rm=new zhang(last.lb,last.sz);
       else rm=new zhang(1,i);
       if (ht[rm.lb][rm.sz]!==0) {
         hulist[--hp]=new zhang(rm.lb,rm.sz);
