@@ -38,14 +38,14 @@ var dap_wj=function () {
     }
     // 如果只有一种牌能杠，则显示按钮为“杠牌”字样
     if (n===1) b[b.length]={
-      n:"杠牌",
+      n:ZH_G+ZH_P,
       f:xm_ag_wj_i,v:
       l[0].divtag().className
     };
     // 否则显示为“杠五万”，“杠东字”等字样
     else for (i=0;i<n;i++)
       b[b.length]={
-        n:"杠"+(
+        n:ZH_G+(
         l[i].lb!==0?
           (ZH_SZ[l[i].sz]+ZH_LB[l[i].lb]):
           (ZH_FJ[l[i].sz])
@@ -55,7 +55,7 @@ var dap_wj=function () {
       }
     // 判断是否能和牌  
     if (s.pdhp(chty===2).ky) {
-      b[b.length]={n:"和牌",f:hup_wj_i};
+      b[b.length]={n:ZH_U+ZH_P,f:hup_wj_i};
       movelast=false;
     }
     if (b.length>0) setButtons(b);
@@ -110,13 +110,13 @@ var pg_wj=function () {
     if (sp[3][i].same(dapc)) c++;
   if (c===3)
     setButtons([
-      {n:"碰牌",f:peng_wj_i},
-      {n:"杠牌",f:dmgang_wj_i},
-      {n:"取消",f:pgqx}
+      {n:ZH_N+ZH_P,f:peng_wj_i},
+      {n:ZH_G+ZH_P,f:dmgang_wj_i},
+      {n:ZH_QX,f:pgqx}
     ]);
   else
     setButtons([
-      {n:"碰牌",f:peng_wj_i},
-      {n:"取消",f:pgqx_wj_i}
+      {n:ZH_N+ZH_P,f:peng_wj_i},
+      {n:ZH_QX,f:pgqx_wj_i}
     ]);
 }

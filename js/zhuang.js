@@ -29,7 +29,7 @@ tpzhuang.prototype.init=function () {
 tpzhuang.prototype.print=function () {
   var i;
   for (i=1;i<=4;i++)
-    $i("zc"+i).value
+    $i(["zc1","zc2","zc3","zc4"][i-1]).value
       =ZH_DNXB[(this.dong+4-i)%4];
   $i("qs").value
     =((this.nzhuang-1)-(this.nzhuang-1)%4)/4+1;

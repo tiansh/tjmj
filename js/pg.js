@@ -88,7 +88,7 @@ var angang=function () {
 
 // 从牌池中移除碰杠的牌
 var rmpc=function () {
-  var d=$i("pc"+(zpos+1));
+  var d=$i(["pc1","pc2","pc3","pc4"][zpos]);
   var a=d.childNodes, l=a.length;
   d.removeChild(a[l-1]);
 }
