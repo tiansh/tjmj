@@ -115,8 +115,9 @@ var hpxs=function (r,s) {
           hulist[--hp]=new zhang(0,8);
           r.numwbt[l]--;
         }
-        if (fxs()) return true;
-        hp+=3; r.numwbt=n;
+        if (fxs())
+          return true;
+        hp+=3; r.numwbt[l]=n;
         for (j=0;j<=9;j++) ht[l][j]=htb[j];
       }
       // 顺
@@ -135,8 +136,9 @@ var hpxs=function (r,s) {
           hulist[--hp]=new zhang(0,8);
           r.numwbt[l]--;
         }
-        if (fxs()) return true;
-        hp+=3; r.numwbt=n;
+        if (fxs())
+          return true;
+        hp+=3; r.numwbt[l]=n;
         for (j=0;j<=9;j++) ht[l][j]=htb[j];
       }
     }

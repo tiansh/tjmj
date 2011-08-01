@@ -70,6 +70,9 @@ var pxinit=function () {
   $i("lp").onclick=lp_switch;
   $i("main_body").onmouseover=move_over;
   $i("main_body").onmouseup=move_up;
+  var b=document.getElementsByTagName("body")[0];
+  b.setAttribute("unselectable","on");
+  b.onselectstart=function () { return false; };
 }
 
 // 点击某张牌时开始移动

@@ -55,7 +55,7 @@ var zhuagd=function () {
 // 打牌
 var dap=function () {
   // 设置显示样式
-  $i("act").className="p"+(zpos+1);
+  $i("act").className=["p1","p2","p3","p4"][zpos];
   // 根据玩家和电脑分类
   if (zpos===3) callfunc(dap_wj);
   else callfunc(dap_dn);
@@ -72,7 +72,7 @@ var dac=function () {
   if (zpos!==3||autosort) s.sort();
   s.print();
   // 在牌池中显示这张牌
-  $i("pc"+(zpos+1)).appendChild(dapc.divtag());
+  $i(["pc1","pc2","pc3","pc4"][zpos]).appendChild(dapc.divtag());
   // 告诉电脑有这么一张牌打出去了
   expp(dapc);
   // 在屏幕中央显示某家打出了这张牌
@@ -99,7 +99,7 @@ var dac=function () {
 var clearpc=function () {
   var i;
   for (i=0;i<4;i++) {
-    var p=$i("pc"+(i+1));
+    var p=$i(["pc1","pc2","pc3","pc4"][i]);
     while (p.firstChild)
       p.removeChild(p.firstChild);
   }

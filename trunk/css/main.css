@@ -13,6 +13,11 @@ body {
   overflow:hidden;
 }
 
+* {
+  -moz-user-select:none;
+  -webkit-user-select:none;
+}
+
 #main_body {
   width:800px;
   height:600px;
@@ -21,8 +26,6 @@ body {
   border:#000;
 }
 
-
-/* 上部文本 */
 header {
   display:block;
   position:static;

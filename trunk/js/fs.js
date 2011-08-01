@@ -29,7 +29,7 @@ tpfs.prototype.init=function () {
 tpfs.prototype.print=function () {
   var i;
   for (i=0;i<4;i++)
-    $i("scr"+(i+1)).value=this[i];
+    $i(["scr1","scr2","scr3","scr4"][i]).value=this[i];
 };
 // 和牌或杠牌后重新计算分数
 // n为和牌或杠牌的大小
