@@ -16,11 +16,11 @@
 */
 
 // 控制电脑打牌速度
-var timer_dn, timeout_dn=100;
+var timer_dn, timeout_dn=2;
 
 // 电脑打牌——选择
 var dap_dn=function () {
-  setTimeout(function(){timer_dn=true},timeout_dn);
+  setTimeout(function(){timer_dn=true},SDXZ[timeout_dn]);
   timer_dn=false;
   var s=sp[zpos];
   if (s.pdhp(chty===2).ky) {

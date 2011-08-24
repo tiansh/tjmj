@@ -24,16 +24,19 @@ var ginit=function () {
     $i("act").className+=" sd";
     // 混儿牌张数选择
     $i("hpzs").className="hz"+zhang.prototype.numhuir;
+    // 起和番数选择
     $i("qihf").className="qf"+qihuf;
+    // 打牌速度选择
+    $i("dpsdi").value=SDXZ[timeout_dn]/1000;
   }
   // 混儿牌张数的选择
   for (i=1;i<=3;i++)
-   $i("hz"+i).onclick=function () {
+   $i(["","hz1","hz2","hz3"][i]).onclick=function () {
     $i("hpzs").className=this.id;
   }
   // 起和番数选择按钮
   for (i=1;i<=3;i++)
-   $i("qf"+i).onclick=function () {
+   $i(["","qf1","qf2","qf3"][i]).onclick=function () {
     $i("qihf").className=this.id;
   }
   // 取消按钮
@@ -47,4 +50,14 @@ var ginit=function () {
     qihuf=($i("qihf").className[2])*1;
     callfunc(minit);
   }
+  // 速度选择按钮
+  $i("sdp").onclick=function () {
+    if (timeout_dn<SDXZ.length-1) timeout_dn++;
+    $i("dpsdi").value=SDXZ[timeout_dn]/1000;
+  }
+  $i("sdd").onclick=function () {
+    if (timeout_dn>1) timeout_dn--;
+    $i("dpsdi").value=SDXZ[timeout_dn]/1000;
+  }
+
 }

@@ -157,4 +157,31 @@ span.hz3~#hz3 {
   color:#FFF;
 }
 
+#sdm>div.ppdd {
+  color:#FFF;
+}
 
+#dpsdi {
+  color:#FFF;
+  width:80px;
+  text-align:center;
+}
+
+#dpsd {
+  display: inline-block;
+  text-align: left;
+  width: 200px;
+}
+
+#dpsd~button.ppdd {
+  width:20px;
+  text-align:center;
+}
+
+#sdd {
+  margin-right:40px;
+}
+
+#sdp {
+  margin-left:40px;
+}
