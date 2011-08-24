@@ -18,10 +18,10 @@
 // 和牌时调用的函数
 var hup=function () {
   var s=sp[zpos], r=s.pdhp(chty===2);
-  $i("su"+(zpos+1)).className+=" xs";
+  $i(["su1","su2","su3","su4"][zpos]).className+=" xs";
   $i("hupwz").value=ZH_DNXB[(zhuang.dong+3-zpos)%4];
   $i("hupms").value=r.mc+"("+r.dx+")";
-  var hps=$i("hup1"), hps2=$i("hup2"), spn=$i("su"+(zpos+1));
+  var hps=$i("hup1"), hps2=$i("hup2"), spn=$i(["su1","su2","su3","su4"][zpos]);
   hps.innerHTML=spn.innerHTML;  hps.className=spn.className;
   hps2.innerHTML=spn.innerHTML; hps2.className=spn.className;
   hpxs(r,s);
